@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - Quiron Concursos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .error {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .info {
+            margin-top: 30px;
+            padding: 15px;
+            background: #f0f4ff;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🏛️</div>
+        <h1>Painel Admin</h1>
+        <p class="subtitle">Quiron Concursos - Gerenciador de Questões</p>
+
+        <div id="error" class="error"></div>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="adminCode">Código de Desenvolvedor</label>
+                <input 
+                    type="password" 
+                    id="adminCode" 
+                    placeholder="Digite o código secreto"
+                    autocomplete="off"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn">🔓 Acessar Painel</button>
+        </form>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p style="margin-top: 15px; color: #667eea; font-weight: 600;">Validando acesso...</p>
+        </div>
+
+        <div class="info">
+            <strong>🔒 Área Restrita</strong><br>
+            Apenas desenvolvedores autorizados podem acessar este painel.
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_CODE = 'QUIRON_DEV_2024';
+        const SUPABASE_URL = 'https://lrmabyfaunhrdvdzocrz.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxybWFieWZhdW5ocmR2ZHpvY3J6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzNDQ4NDUsImV4cCI6MjA3ODkyMDg0NX0.XALJ51MUjxw93j4NkJu3cFusKOAIY1LlClg_tbIy_r0';
+
+        const form = document.getElementById('loginForm');
+        const errorDiv = document.getElementById('error');
+        const loadingDiv = document.getElementById('loading');
+
+        // Verificar se já está logado
+        if (localStorage.getItem('quiron_admin_logged') === 'true') {
+            window.location.href = 'dashboard.html';
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const code = document.getElementById('adminCode').value;
+            errorDiv.classList.remove('show');
+            loadingDiv.classList.add('show');
+            form.style.display = 'none';
+
+            // Simular verificação (validar código)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            if (code !== ADMIN_CODE) {
+                errorDiv.textContent = '❌ Código inválido! Acesso negado.';
+                errorDiv.classList.add('show');
+                loadingDiv.classList.remove('show');
+                form.style.display = 'block';
+                return;
+            }
+
+            // MODO DEMO: Login direto sem testar backend
+            console.log('✅ Código validado! Entrando em MODO DEMO...');
+            localStorage.setItem('quiron_admin_logged', 'true');
+            localStorage.setItem('quiron_admin_code', code);
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>

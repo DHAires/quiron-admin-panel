@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importação em Massa - Quiron Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-area:hover {
+            background: #f0f4ff;
+            border-color: #764ba2;
+        }
+
+        .upload-area.dragover {
+            background: #e0e7ff;
+            border-color: #4f46e5;
+        }
+
+        .upload-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .upload-text {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .upload-hint {
+            font-size: 14px;
+            color: #666;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .file-list {
+            margin-bottom: 20px;
+        }
+
+        .file-item {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .file-size {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-container {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .log {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .log-success {
+            color: #10b981;
+        }
+
+        .log-error {
+            color: #ef4444;
+        }
+
+        .log-info {
+            color: #667eea;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #f3f4f6;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📤 Importação em Massa</h1>
+        <p class="subtitle">Importe múltiplos arquivos JSON com questões</p>
+
+        <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">Arraste arquivos JSON aqui</div>
+            <div class="upload-hint">ou clique para selecionar</div>
+        </div>
+
+        <input type="file" id="fileInput" accept=".json" multiple>
+
+        <div class="file-list" id="fileList"></div>
+
+        <button class="btn btn-primary" id="importBtn" onclick="startImport()" disabled>
+            🚀 Iniciar Importação
+        </button>
+
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill">0%</div>
+            </div>
+            <div class="log" id="log"></div>
+            <div class="stats" id="stats" style="display: none;">
+                <div class="stat-box">
+                    <div class="stat-number" id="statSuccess">0</div>
+                    <div class="stat-label">✅ Importadas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="statErrors">0</div>
+                    <div class="stat-label">❌ Erros</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="statJuridica">0</div>
+                    <div class="stat-label">📘 Jurídica</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="statPolicial">0</div>
+                    <div class="stat-label">🚔 Policial</div>
+                </div>
+            </div>
+        </div>
+
+        <a href="dashboard.html" class="back-btn">← Voltar ao Dashboard</a>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://lrmabyfaunhrdvdzocrz.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxybWFieWZhdW5ocmR2ZHpvY3J6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzNDQ4NDUsImV4cCI6MjA3ODkyMDg0NX0.XALJ51MUjxw93j4NkJu3cFusKOAIY1LlClg_tbIy_r0';
+        
+        let adminCode = localStorage.getItem('quiron_admin_code');
+        let selectedFiles = [];
+        let stats = { success: 0, errors: 0, juridica: 0, policial: 0, fiscal: 0, gerais: 0 };
+
+        // Verificar autenticação
+        if (localStorage.getItem('quiron_admin_logged') !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        // Drag and drop
+        const uploadArea = document.getElementById('uploadArea');
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files).filter(f => f.name.endsWith('.json'));
+            handleFiles(files);
+        });
+
+        document.getElementById('fileInput').addEventListener('change', (e) => {
+            handleFiles(Array.from(e.target.files));
+        });
+
+        function handleFiles(files) {
+            selectedFiles = files;
+            
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+
+            if (files.length === 0) {
+                document.getElementById('importBtn').disabled = true;
+                return;
+            }
+
+            files.forEach(file => {
+                const item = document.createElement('div');
+                item.className = 'file-item';
+                item.innerHTML = `
+                    <div>
+                        <div class="file-name">📄 ${file.name}</div>
+                        <div class="file-size">${(file.size / 1024).toFixed(2)} KB</div>
+                    </div>
+                    <button onclick="removeFile('${file.name}')" style="background: #ef4444; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer;">Remover</button>
+                `;
+                fileList.appendChild(item);
+            });
+
+            document.getElementById('importBtn').disabled = false;
+        }
+
+        function removeFile(filename) {
+            selectedFiles = selectedFiles.filter(f => f.name !== filename);
+            handleFiles(selectedFiles);
+        }
+
+        function log(message, type = 'info') {
+            const logEl = document.getElementById('log');
+            const time = new Date().toLocaleTimeString();
+            const className = `log-${type}`;
+            logEl.innerHTML += `<div class="${className}">[${time}] ${message}</div>`;
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+
+        function updateProgress(current, total) {
+            const percent = Math.round((current / total) * 100);
+            const fill = document.getElementById('progressFill');
+            fill.style.width = percent + '%';
+            fill.textContent = percent + '%';
+        }
+
+        function updateStats() {
+            document.getElementById('statSuccess').textContent = stats.success;
+            document.getElementById('statErrors').textContent = stats.errors;
+            document.getElementById('statJuridica').textContent = stats.juridica;
+            document.getElementById('statPolicial').textContent = stats.policial;
+            document.getElementById('stats').style.display = 'grid';
+        }
+
+        async function importFile(file) {
+            try {
+                log(`📂 Lendo arquivo: ${file.name}`, 'info');
+                
+                const content = await file.text();
+                const data = JSON.parse(content);
+                
+                if (!data.questions || !Array.isArray(data.questions)) {
+                    throw new Error('Formato inválido: deve conter array "questions"');
+                }
+
+                log(`✅ ${data.questions.length} questões encontradas`, 'success');
+
+                // Enviar em lotes de 50
+                const BATCH_SIZE = 50;
+                for (let i = 0; i < data.questions.length; i += BATCH_SIZE) {
+                    const batch = data.questions.slice(i, i + BATCH_SIZE);
+                    
+                    const response = await fetch(`${SUPABASE_URL}/functions/v1/make-server-50734795/game/seed`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${SUPABASE_KEY}`,
+                            'x-admin-code': adminCode
+                        },
+                        body: JSON.stringify({
+                            questions: batch,
+                            area: data.area || 'juridica'
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    stats.success += result.saved || 0;
+                    
+                    // Atualizar stats por área
+                    const area = data.area || 'juridica';
+                    if (area === 'juridica') stats.juridica += result.saved || 0;
+                    else if (area === 'policial') stats.policial += result.saved || 0;
+                    else if (area === 'fiscal-bancaria') stats.fiscal += result.saved || 0;
+                    else stats.gerais += result.saved || 0;
+
+                    log(`  ✅ Lote ${Math.floor(i / BATCH_SIZE) + 1}: ${result.saved}/${batch.length} salvas`, 'success');
+                }
+
+                log(`✅ Arquivo ${file.name} importado com sucesso!`, 'success');
+
+            } catch (error) {
+                stats.errors++;
+                log(`❌ Erro em ${file.name}: ${error.message}`, 'error');
+            }
+        }
+
+        async function startImport() {
+            if (selectedFiles.length === 0) {
+                alert('Selecione pelo menos um arquivo!');
+                return;
+            }
+
+            document.getElementById('importBtn').disabled = true;
+            document.getElementById('progressContainer').style.display = 'block';
+            document.getElementById('log').innerHTML = '';
+            
+            stats = { success: 0, errors: 0, juridica: 0, policial: 0, fiscal: 0, gerais: 0 };
+
+            log('🚀 Iniciando importação em massa...', 'info');
+
+            for (let i = 0; i < selectedFiles.length; i++) {
+                updateProgress(i, selectedFiles.length);
+                await importFile(selectedFiles[i]);
+            }
+
+            updateProgress(selectedFiles.length, selectedFiles.length);
+            updateStats();
+
+            log('✅ IMPORTAÇÃO CONCLUÍDA!', 'success');
+            log(`📊 Total: ${stats.success} questões importadas, ${stats.errors} erros`, 'info');
+        }
+    </script>
+</body>
+</html>

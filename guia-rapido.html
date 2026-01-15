@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Rápido - Quiron Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin: 30px 0 15px 0;
+            font-size: 24px;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #555;
+            margin: 20px 0 10px 0;
+            font-size: 18px;
+        }
+
+        p, li {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #92400e;
+        }
+
+        .code {
+            background: #1f2937;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .warning strong {
+            color: #991b1b;
+        }
+
+        .info {
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .info strong {
+            color: #1e40af;
+        }
+
+        .success {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .success strong {
+            color: #065f46;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .step {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏛️ Guia Rápido - Quiron Admin</h1>
+
+        <div class="info">
+            <strong>ℹ️ Sobre Este Painel:</strong>
+            <p style="margin-top: 10px;">
+                O Quiron Admin é um painel web que permite gerenciar o banco de questões do jogo 
+                sem precisar mexer em código. Hospedado no Vercel, conecta-se diretamente ao 
+                backend Supabase do aplicativo.
+            </p>
+        </div>
+
+        <h2>🚀 Início Rápido</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Acesse o painel:</strong>
+            <p style="margin-top: 10px;">
+                Abra a URL do Vercel (ex: <span class="highlight">https://quiron-admin.vercel.app</span>)
+            </p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Faça login com o código admin:</strong>
+            <div class="code" style="margin-top: 10px;">QUIRON_DEV_2024</div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>Comece a gerenciar!</strong>
+            <p style="margin-top: 10px;">
+                Use o dashboard para visualizar, adicionar, editar ou importar questões.
+            </p>
+        </div>
+
+        <h2>📚 Funcionalidades Principais</h2>
+
+        <h3>1️⃣ Dashboard</h3>
+        <ul>
+            <li>Veja estatísticas de quantas questões existem em cada área</li>
+            <li>Navegue por todas as questões do banco</li>
+            <li>Filtre por área, dificuldade ou busque por texto</li>
+            <li>Acesse rapidamente as funç��es de adicionar e importar</li>
+        </ul>
+
+        <h3>2️⃣ Adicionar Questão</h3>
+        <ul>
+            <li>Formulário completo para criar uma nova questão</li>
+            <li>Campos: área, matéria, enunciado, resposta (Certo/Errado), explicação, dificuldade</li>
+            <li>A questão é salva imediatamente no banco de dados</li>
+            <li>Aparece automaticamente no app quando atualizado</li>
+        </ul>
+
+        <h3>3️⃣ Importar em Massa</h3>
+        <ul>
+            <li>Importe centenas de questões de uma vez</li>
+            <li>Duas opções: importar todas da pasta /data/ ou enviar arquivo JSON</li>
+            <li>Progresso em tempo real com logs detalhados</li>
+            <li>Processamento em batches para não sobrecarregar o servidor</li>
+        </ul>
+
+        <h2>📋 Formato das Questões</h2>
+
+        <div class="info">
+            <strong>Estrutura GameQuestion:</strong>
+            <pre style="margin-top: 10px; font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.6;">
+{
+  "id": "jur_const_001",
+  "area": "juridica",
+  "subject": "Direito Constitucional",
+  "question": "A República Federativa do Brasil...",
+  "correctAnswer": true,
+  "explanation": "CERTO. Conforme art. 1º da CF...",
+  "difficulty": "facil"
+}
+            </pre>
+        </div>
+
+        <h3>Campos Obrigatórios:</h3>
+        <ul>
+            <li><strong>id:</strong> Identificador único (gerado automaticamente)</li>
+            <li><strong>area:</strong> juridica | policial | fiscal-bancaria | conhecimentos-gerais</li>
+            <li><strong>subject:</strong> Nome da matéria (ex: "Direito Constitucional")</li>
+            <li><strong>question:</strong> Enunciado da questão (formato Certo/Errado)</li>
+            <li><strong>correctAnswer:</strong> true (CERTO) ou false (ERRADO)</li>
+            <li><strong>explanation:</strong> Explicação da resposta</li>
+            <li><strong>difficulty:</strong> facil | medio | dificil</li>
+        </ul>
+
+        <h2>🎨 Áreas do Game</h2>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
+            <div style="background: #dbeafe; padding: 15px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                <strong style="color: #1e40af;">📘 Jurídica (Azul)</strong>
+                <p style="font-size: 14px; margin-top: 5px;">Direito Constitucional, Administrativo, Penal, Civil, etc.</p>
+            </div>
+            <div style="background: #fee2e2; padding: 15px; border-radius: 8px; border-left: 4px solid #ef4444;">
+                <strong style="color: #991b1b;">🚔 Policial (Vermelho)</strong>
+                <p style="font-size: 14px; margin-top: 5px;">Legislação Penal, Procedimentos Policiais, Criminalística</p>
+            </div>
+            <div style="background: #fef3c7; padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                <strong style="color: #92400e;">💰 Fiscal-Bancária (Amarelo)</strong>
+                <p style="font-size: 14px; margin-top: 5px;">Contabilidade, Economia, Direito Tributário</p>
+            </div>
+            <div style="background: #ede9fe; padding: 15px; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                <strong style="color: #5b21b6;">🧠 Conhecimentos Gerais (Roxo)</strong>
+                <p style="font-size: 14px; margin-top: 5px;">Português, Raciocínio Lógico, Atualidades</p>
+            </div>
+        </div>
+
+        <h2>⚠️ Importante Saber</h2>
+
+        <div class="warning">
+            <strong>Código Admin:</strong>
+            <p style="margin-top: 10px;">
+                O código <span class="highlight">QUIRON_DEV_2024</span> é validado tanto no frontend 
+                quanto no backend. Mantenha-o em segredo!
+            </p>
+        </div>
+
+        <div class="warning">
+            <strong>Importação Automática:</strong>
+            <p style="margin-top: 10px;">
+                A função "Importar Todas as Questões" atualmente é uma simulação. Para importar 
+                as 1.370 questões reais da pasta /data/, você precisa criar um script Node.js 
+                que processe os arquivos TypeScript.
+            </p>
+        </div>
+
+        <div class="success">
+            <strong>✅ Dica:</strong>
+            <p style="margin-top: 10px;">
+                Use o arquivo <span class="highlight">exemplo-importacao.json</span> como modelo 
+                para criar seus próprios arquivos de importação em massa!
+            </p>
+        </div>
+
+        <h2>🔧 Próximas Implementações</h2>
+
+        <ul>
+            <li>✏️ Editar questão existente (precisa de rota PUT no backend)</li>
+            <li>🗑️ Deletar questão (precisa de rota DELETE no backend)</li>
+            <li>📊 Estatísticas detalhadas por matéria</li>
+            <li>💾 Exportar questões para backup</li>
+            <li>🔍 Busca avançada com múltiplos filtros</li>
+            <li>📈 Gráficos de distribuição de questões</li>
+        </ul>
+
+        <h2>📞 Suporte</h2>
+
+        <div class="info">
+            <strong>Problemas ou dúvidas?</strong>
+            <ol style="margin-top: 10px;">
+                <li>Abra o console do navegador (F12) para ver erros</li>
+                <li>Verifique se o backend Supabase está rodando</li>
+                <li>Teste as rotas manualmente com Postman</li>
+                <li>Consulte o README.md para mais detalhes</li>
+            </ol>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="index.html" class="btn">🚀 Acessar o Painel</a>
+        </div>
+
+        <p style="text-align: center; margin-top: 30px; color: #999; font-size: 14px;">
+            © 2025 Quiron Concursos - Desenvolvido com ❤️
+        </p>
+    </div>
+</body>
+</html>

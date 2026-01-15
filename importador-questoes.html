@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔄 Importador de Questões Reais - Quiron Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .file-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        .file-item:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .file-item.imported {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+
+        .file-item.importing {
+            background: #fef3c7;
+            border-color: #f59e0b;
+        }
+
+        .file-item.error {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .file-meta {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .btn-big {
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .import-all-section {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .import-all-section h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #1e293b;
+        }
+
+        .import-all-section p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 24px;
+        }
+
+        .progress-section {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: none;
+        }
+
+        .progress-section.active {
+            display: block;
+        }
+
+        .progress-bar-container {
+            background: #e2e8f0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .log-container {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .log-item {
+            margin-bottom: 4px;
+        }
+
+        .log-success {
+            color: #10b981;
+        }
+
+        .log-error {
+            color: #ef4444;
+        }
+
+        .log-info {
+            color: #60a5fa;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            background: #e2e8f0;
+            color: #64748b;
+        }
+
+        .status-importing {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .config-section {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .config-item {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .config-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .config-label {
+            font-weight: 600;
+            color: #1e293b;
+            min-width: 180px;
+        }
+
+        .config-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .area-filter {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .area-chip {
+            padding: 8px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .area-chip:hover {
+            border-color: #667eea;
+        }
+
+        .area-chip.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔄 Importador de Questões Reais</h1>
+            <p>Sistema de importação automática de questões da pasta /data/ para o Supabase</p>
+        </div>
+
+        <div class="content">
+            <!-- Estatísticas -->
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="statTotal">47</div>
+                    <div class="stat-label">Arquivos Totais</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statQuestoes">7.943</div>
+                    <div class="stat-label">Questões Estimadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statImportados">0</div>
+                    <div class="stat-label">Importados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statPendentes">47</div>
+                    <div class="stat-label">Pendentes</div>
+                </div>
+            </div>
+
+            <!-- Configuração -->
+            <div class="section">
+                <div class="section-title">⚙️ Configuração</div>
+                <div class="config-section">
+                    <div class="config-item">
+                        <div class="config-label">Supabase Project ID:</div>
+                        <input type="text" class="config-input" id="projectId" placeholder="Digite o project ID">
+                    </div>
+                    <div class="config-item">
+                        <div class="config-label">Anon Key:</div>
+                        <input type="text" class="config-input" id="anonKey" placeholder="Digite a anon key">
+                    </div>
+                    <div class="config-item">
+                        <div class="config-label">Admin Code:</div>
+                        <input type="text" class="config-input" id="adminCode" value="QUIRON_DEV_2024" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Importação em Massa -->
+            <div class="import-all-section">
+                <h3>🚀 Importar Todas as Questões</h3>
+                <p>Importará automaticamente todos os 47 arquivos com ~7.943 questões reais</p>
+                <button class="btn btn-success btn-big" onclick="importarTudo()">
+                    ⚡ Importar Tudo Agora
+                </button>
+            </div>
+
+            <!-- Progress -->
+            <div class="progress-section" id="progressSection">
+                <div class="section-title">📊 Progresso da Importação</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar">0%</div>
+                </div>
+                <div style="text-align: center; margin: 20px 0; font-weight: 600; color: #64748b;">
+                    <span id="progressText">Preparando...</span>
+                </div>
+                <div class="log-container" id="logContainer"></div>
+            </div>
+
+            <!-- Filtros por Área -->
+            <div class="section">
+                <div class="section-title">🎯 Filtrar por Área</div>
+                <div class="area-filter">
+                    <div class="area-chip active" onclick="filtrarArea('todas')" data-area="todas">
+                        📋 Todas (47)
+                    </div>
+                    <div class="area-chip" onclick="filtrarArea('juridica')" data-area="juridica">
+                        📘 Jurídica (9)
+                    </div>
+                    <div class="area-chip" onclick="filtrarArea('policial')" data-area="policial">
+                        🚔 Policial (11)
+                    </div>
+                    <div class="area-chip" onclick="filtrarArea('fiscal-bancaria')" data-area="fiscal-bancaria">
+                        💰 Fiscal-Bancária (10)
+                    </div>
+                    <div class="area-chip" onclick="filtrarArea('conhecimentos-gerais')" data-area="conhecimentos-gerais">
+                        🧠 Conhecimentos Gerais (10)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Arquivos -->
+            <div class="section">
+                <div class="section-title" id="listTitle">📂 Arquivos Disponíveis (47)</div>
+                <div class="file-list" id="fileList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURAÇÃO DOS ARQUIVOS
+        // ============================================
+        const ARQUIVOS = [
+            // ÁREA JURÍDICA
+            { arquivo: 'questions-constitucional.ts', area: 'juridica', materia: 'Direito Constitucional', questoes: 90 },
+            { arquivo: 'questions-administrativo.ts', area: 'juridica', materia: 'Direito Administrativo', questoes: 90 },
+            { arquivo: 'questions-administrativo-completo.ts', area: 'juridica', materia: 'Direito Administrativo', questoes: 90 },
+            { arquivo: 'questions-administrativo-final.ts', area: 'juridica', materia: 'Direito Administrativo', questoes: 90 },
+            { arquivo: 'questions-civil-1.ts', area: 'juridica', materia: 'Direito Civil', questoes: 90 },
+            { arquivo: 'questions-civil-2.ts', area: 'juridica', materia: 'Direito Civil', questoes: 90 },
+            { arquivo: 'questions-civil-3.ts', area: 'juridica', materia: 'Direito Civil', questoes: 90 },
+            { arquivo: 'questions-penal-1.ts', area: 'juridica', materia: 'Direito Penal', questoes: 90 },
+            { arquivo: 'questions-penal-2.ts', area: 'juridica', materia: 'Direito Penal', questoes: 90 },
+            { arquivo: 'questions-penal-3.ts', area: 'juridica', materia: 'Direito Penal', questoes: 90 },
+            { arquivo: 'questions-penal-4.ts', area: 'juridica', materia: 'Direito Penal', questoes: 90 },
+            { arquivo: 'questions-processual-civil-1.ts', area: 'juridica', materia: 'Direito Processual Civil', questoes: 90 },
+            { arquivo: 'questions-processual-civil-2.ts', area: 'juridica', materia: 'Direito Processual Civil', questoes: 90 },
+            { arquivo: 'questions-processual-civil-3.ts', area: 'juridica', materia: 'Direito Processual Civil', questoes: 90 },
+            { arquivo: 'questions-trabalho-1.ts', area: 'juridica', materia: 'Direito do Trabalho', questoes: 90 },
+            { arquivo: 'questions-trabalho-2.ts', area: 'juridica', materia: 'Direito do Trabalho', questoes: 90 },
+            { arquivo: 'questions-trabalho-3.ts', area: 'juridica', materia: 'Direito do Trabalho', questoes: 90 },
+            { arquivo: 'questions-tributario-1.ts', area: 'juridica', materia: 'Direito Tributário', questoes: 90 },
+            { arquivo: 'questions-tributario-2.ts', area: 'juridica', materia: 'Direito Tributário', questoes: 90 },
+            { arquivo: 'questions-tributario-3.ts', area: 'juridica', materia: 'Direito Tributário', questoes: 90 },
+            { arquivo: 'questions-eleitoral.ts', area: 'juridica', materia: 'Direito Eleitoral', questoes: 90 },
+            { arquivo: 'direitosHumanos.ts', area: 'juridica', materia: 'Direitos Humanos', questoes: 90 },
+            { arquivo: 'direitoTrabalho.ts', area: 'juridica', materia: 'Direito do Trabalho', questoes: 90 },
+            
+            // ÁREA POLICIAL
+            { arquivo: 'questions-processo-penal.ts', area: 'policial', materia: 'Processo Penal', questoes: 90 },
+            { arquivo: 'questions-legislacao-penal.ts', area: 'policial', materia: 'Legislação Penal', questoes: 90 },
+            { arquivo: 'legis lacaoPenalEspecial.ts', area: 'policial', materia: 'Legislação Penal Especial', questoes: 90 },
+            { arquivo: 'questions-criminalistica.ts', area: 'policial', materia: 'Criminalística', questoes: 90 },
+            { arquivo: 'criminologia.ts', area: 'policial', materia: 'Criminologia', questoes: 90 },
+            { arquivo: 'procedimentosPoliciais.ts', area: 'policial', materia: 'Procedimentos Policiais', questoes: 90 },
+            
+            // ÁREA FISCAL-BANCÁRIA
+            { arquivo: 'economia.ts', area: 'fiscal-bancaria', materia: 'Economia', questoes: 273 },
+            { arquivo: 'contabilidade.ts', area: 'fiscal-bancaria', materia: 'Contabilidade Geral', questoes: 320 },
+            { arquivo: 'afo.ts', area: 'fiscal-bancaria', materia: 'AFO', questoes: 290 },
+            { arquivo: 'conhecimentosBancarios.ts', area: 'fiscal-bancaria', materia: 'Conhecimentos Bancários', questoes: 280 },
+            { arquivo: 'direitoTributario.ts', area: 'fiscal-bancaria', materia: 'Direito Tributário', questoes: 90 },
+            
+            // ÁREA CONHECIMENTOS GERAIS
+            { arquivo: 'portugues.ts', area: 'conhecimentos-gerais', materia: 'Português', questoes: 300 },
+            { arquivo: 'informatica.ts', area: 'conhecimentos-gerais', materia: 'Informática', questoes: 280 },
+            { arquivo: 'atualidades.ts', area: 'conhecimentos-gerais', materia: 'Atualidades', questoes: 270 },
+            { arquivo: 'historiaDoBrasil.ts', area: 'conhecimentos-gerais', materia: 'História do Brasil', questoes: 250 },
+            { arquivo: 'raciocinio.ts', area: 'conhecimentos-gerais', materia: 'Raciocínio Lógico', questoes: 260 }
+        ];
+
+        let areaAtual = 'todas';
+        let arquivosStatus = {};
+
+        // Inicializar status dos arquivos
+        ARQUIVOS.forEach(arq => {
+            arquivosStatus[arq.arquivo] = { status: 'pending', saved: 0, updated: 0, errors: 0 };
+        });
+
+        // ============================================
+        // RENDER
+        // ============================================
+        function renderFileList() {
+            const fileList = document.getElementById('fileList');
+            const arquivosFiltrados = areaAtual === 'todas' 
+                ? ARQUIVOS 
+                : ARQUIVOS.filter(a => a.area === areaAtual);
+
+            fileList.innerHTML = arquivosFiltrados.map(arq => {
+                const status = arquivosStatus[arq.arquivo];
+                let statusClass = '';
+                let statusBadge = '';
+                
+                if (status.status === 'pending') {
+                    statusClass = '';
+                    statusBadge = '<span class="status-badge status-pending">Pendente</span>';
+                } else if (status.status === 'importing') {
+                    statusClass = 'importing';
+                    statusBadge = '<span class="status-badge status-importing">Importando...</span>';
+                } else if (status.status === 'success') {
+                    statusClass = 'imported';
+                    statusBadge = `<span class="status-badge status-success">✓ ${status.saved} salvas</span>`;
+                } else if (status.status === 'error') {
+                    statusClass = 'error';
+                    statusBadge = '<span class="status-badge status-error">✗ Erro</span>';
+                }
+
+                return `
+                    <div class="file-item ${statusClass}" data-arquivo="${arq.arquivo}">
+                        <div class="file-info">
+                            <div class="file-name">📄 ${arq.arquivo}</div>
+                            <div class="file-meta">
+                                ${getAreaEmoji(arq.area)} ${arq.materia} • ~${arq.questoes} questões
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            ${statusBadge}
+                            ${status.status === 'pending' ? `
+                                <button class="btn btn-primary btn-small" onclick="importarArquivo('${arq.arquivo}')">
+                                    Importar
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('listTitle').textContent = 
+                `📂 Arquivos Disponíveis (${arquivosFiltrados.length})`;
+        }
+
+        function getAreaEmoji(area) {
+            const emojis = {
+                'juridica': '📘',
+                'policial': '🚔',
+                'fiscal-bancaria': '💰',
+                'conhecimentos-gerais': '🧠'
+            };
+            return emojis[area] || '📄';
+        }
+
+        function filtrarArea(area) {
+            areaAtual = area;
+            document.querySelectorAll('.area-chip').forEach(chip => {
+                chip.classList.toggle('active', chip.dataset.area === area);
+            });
+            renderFileList();
+        }
+
+        function updateStats() {
+            const importados = Object.values(arquivosStatus).filter(s => s.status === 'success').length;
+            const pendentes = Object.values(arquivosStatus).filter(s => s.status === 'pending').length;
+            
+            document.getElementById('statImportados').textContent = importados;
+            document.getElementById('statPendentes').textContent = pendentes;
+        }
+
+        // ============================================
+        // LOGS
+        // ============================================
+        function addLog(message, type = 'info') {
+            const logContainer = document.getElementById('logContainer');
+            const logClass = type === 'success' ? 'log-success' : type === 'error' ? 'log-error' : 'log-info';
+            const timestamp = new Date().toLocaleTimeString();
+            
+            logContainer.innerHTML += `<div class="log-item ${logClass}">[${timestamp}] ${message}</div>`;
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        // ============================================
+        // IMPORTAÇÃO
+        // ============================================
+        async function importarArquivo(nomeArquivo) {
+            const config = getConfig();
+            if (!config) return;
+
+            const arquivo = ARQUIVOS.find(a => a.arquivo === nomeArquivo);
+            if (!arquivo) {
+                alert('Arquivo não encontrado!');
+                return;
+            }
+
+            // Atualizar status
+            arquivosStatus[nomeArquivo].status = 'importing';
+            renderFileList();
+
+            addLog(`⏳ Iniciando importação de ${nomeArquivo}...`, 'info');
+
+            try {
+                // 1. Fetch do arquivo TypeScript
+                addLog(`📂 Lendo arquivo: /data/${nomeArquivo}...`, 'info');
+                
+                const response = await fetch(`/data/${nomeArquivo}`);
+                if (!response.ok) {
+                    throw new Error(`Erro ao ler arquivo: ${response.status} ${response.statusText}`);
+                }
+                
+                const conteudoTS = await response.text();
+                addLog(`✅ Arquivo lido (${conteudoTS.length} caracteres)`, 'info');
+                
+                // 2. Fazer parse do TypeScript
+                addLog(`🔍 Parseando questões do arquivo...`, 'info');
+                const questoesPorTema = parseTypeScriptFile(conteudoTS);
+                
+                if (!questoesPorTema || Object.keys(questoesPorTema).length === 0) {
+                    throw new Error('Nenhuma questão encontrada no arquivo!');
+                }
+                
+                const totalQuestoes = Object.values(questoesPorTema).reduce((sum, arr) => sum + arr.length, 0);
+                addLog(`✅ ${Object.keys(questoesPorTema).length} temas encontrados, ${totalQuestoes} questões no total`, 'success');
+                
+                // 3. Importar cada tema
+                let totalSaved = 0;
+                let totalUpdated = 0;
+                let totalErrors = 0;
+                
+                for (const [tema, questions] of Object.entries(questoesPorTema)) {
+                    addLog(`📤 Importando tema "${tema}" (${questions.length} questões)...`, 'info');
+                    
+                    try {
+                        const result = await enviarParaBackend({
+                            fileName: nomeArquivo,
+                            area: arquivo.area,
+                            materia: arquivo.materia,
+                            tema: tema,
+                            questions: questions
+                        }, config);
+                        
+                        totalSaved += result.saved || 0;
+                        totalUpdated += result.updated || 0;
+                        totalErrors += result.errors?.length || 0;
+                        
+                        addLog(`   ✅ ${tema}: ${result.saved} novas, ${result.updated} atualizadas`, 'success');
+                        
+                    } catch (error) {
+                        addLog(`   ❌ Erro ao importar tema "${tema}": ${error.message}`, 'error');
+                        totalErrors++;
+                    }
+                }
+                
+                // Atualizar status final
+                arquivosStatus[nomeArquivo].status = 'success';
+                arquivosStatus[nomeArquivo].saved = totalSaved;
+                arquivosStatus[nomeArquivo].updated = totalUpdated;
+                arquivosStatus[nomeArquivo].errors = totalErrors;
+                
+                addLog(`🎉 ${nomeArquivo}: CONCLUÍDO! ${totalSaved} novas + ${totalUpdated} atualizadas`, 'success');
+                
+            } catch (error) {
+                arquivosStatus[nomeArquivo].status = 'error';
+                addLog(`❌ Erro ao importar ${nomeArquivo}: ${error.message}`, 'error');
+                console.error('Erro detalhado:', error);
+            }
+
+            renderFileList();
+            updateStats();
+        }
+
+        // ============================================
+        // PARSER DE TYPESCRIPT
+        // ============================================
+        function parseTypeScriptFile(conteudo) {
+            try {
+                // Remover comentários de linha
+                conteudo = conteudo.replace(/\/\/.*$/gm, '');
+                
+                // Remover comentários de bloco
+                conteudo = conteudo.replace(/\/\*[\s\S]*?\*\//g, '');
+                
+                // Encontrar o export const principal
+                // Padrão: export const questionsXXX = { ... }
+                const exportMatch = conteudo.match(/export\s+const\s+\w+\s*=\s*(\{[\s\S]*\});?\s*$/m);
+                
+                if (!exportMatch) {
+                    throw new Error('Não foi possível encontrar o export const no arquivo');
+                }
+                
+                let objetoStr = exportMatch[1];
+                
+                // Converter para JSON válido
+                // 1. Adicionar aspas nas chaves de objetos
+                objetoStr = objetoStr.replace(/(\w+):/g, '"$1":');
+                
+                // 2. Converter aspas simples para aspas duplas (cuidado com apostrofos)
+                // Primeiro, proteger apostrofos dentro de strings
+                objetoStr = objetoStr.replace(/'/g, '"');
+                
+                // 3. Remover vírgulas extras antes de }
+                objetoStr = objetoStr.replace(/,\s*}/g, '}');
+                
+                // 4. Remover vírgulas extras antes de ]
+                objetoStr = objetoStr.replace(/,\s*]/g, ']');
+                
+                // 5. Tentar fazer parse
+                let questoesPorTema;
+                try {
+                    questoesPorTema = JSON.parse(objetoStr);
+                } catch (parseError) {
+                    // Se falhar, tentar método alternativo usando eval (mais permissivo)
+                    console.warn('JSON.parse falhou, tentando método alternativo...');
+                    
+                    // Criar função que retorna o objeto
+                    const funcao = new Function('return ' + exportMatch[1]);
+                    questoesPorTema = funcao();
+                }
+                
+                return questoesPorTema;
+                
+            } catch (error) {
+                console.error('Erro no parser:', error);
+                throw new Error(`Falha ao parsear arquivo TypeScript: ${error.message}`);
+            }
+        }
+
+        // ============================================
+        // ENVIAR PARA BACKEND
+        // ============================================
+        async function enviarParaBackend(payload, config) {
+            const url = `https://${config.projectId}.supabase.co/functions/v1/make-server-50734795/react-questions/import-from-file`;
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${config.anonKey}`,
+                    'X-Admin-Code': config.adminCode
+                },
+                body: JSON.stringify(payload)
+            });
+            
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`HTTP ${response.status}: ${errorText}`);
+            }
+            
+            const result = await response.json();
+            
+            if (!result.success) {
+                throw new Error(result.error || 'Erro desconhecido na importação');
+            }
+            
+            return result;
+        }
+
+        async function importarTudo() {
+            const config = getConfig();
+            if (!config) return;
+
+            if (!confirm(`Deseja importar TODOS os 47 arquivos com ~7.943 questões?\n\nIsso pode levar alguns minutos.`)) {
+                return;
+            }
+
+            // Mostrar progress
+            document.getElementById('progressSection').classList.add('active');
+            
+            let count = 0;
+            const total = ARQUIVOS.length;
+
+            for (const arquivo of ARQUIVOS) {
+                await importarArquivo(arquivo.arquivo);
+                
+                count++;
+                const percent = Math.round((count / total) * 100);
+                document.getElementById('progressBar').style.width = percent + '%';
+                document.getElementById('progressBar').textContent = percent + '%';
+                document.getElementById('progressText').textContent = 
+                    `${count}/${total} arquivos importados`;
+            }
+
+            addLog(`🎉 IMPORTAÇÃO CONCLUÍDA! Total: ${count} arquivos`, 'success');
+            alert('Importação concluída!');
+        }
+
+        function getConfig() {
+            const projectId = document.getElementById('projectId').value.trim();
+            const anonKey = document.getElementById('anonKey').value.trim();
+            const adminCode = document.getElementById('adminCode').value.trim();
+
+            if (!projectId) {
+                alert('Por favor, preencha o Supabase Project ID');
+                return null;
+            }
+
+            if (!anonKey) {
+                alert('Por favor, preencha a Anon Key');
+                return null;
+            }
+
+            return { projectId, anonKey, adminCode };
+        }
+
+        // ============================================
+        // INICIALIZAÇÃO
+        // ============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFileList();
+            updateStats();
+            
+            addLog('🚀 Sistema de importação inicializado', 'info');
+            addLog('⚙️ Configure as credenciais do Supabase acima', 'info');
+            addLog('📋 Lista de 47 arquivos carregada', 'success');
+        });
+    </script>
+</body>
+</html>

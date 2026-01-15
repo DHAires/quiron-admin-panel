@@ -1,0 +1,92 @@
+[
+  {
+    "id": "jur_const_001",
+    "area": "juridica",
+    "subject": "Direito Constitucional",
+    "question": "A República Federativa do Brasil é formada pela união indissolúvel dos Estados, Municípios e do Distrito Federal.",
+    "correctAnswer": true,
+    "explanation": "CERTO. Conforme art. 1º da Constituição Federal de 1988, a República Federativa do Brasil é formada pela união indissolúvel dos Estados e Municípios e do Distrito Federal.",
+    "difficulty": "facil"
+  },
+  {
+    "id": "jur_const_002",
+    "area": "juridica",
+    "subject": "Direito Constitucional",
+    "question": "Todo poder emana do povo, que o exerce por meio de representantes eleitos ou diretamente, nos termos da Constituição Federal.",
+    "correctAnswer": true,
+    "explanation": "CERTO. Este é o princípio da soberania popular, previsto no parágrafo único do art. 1º da CF/88, que estabelece que todo poder emana do povo.",
+    "difficulty": "facil"
+  },
+  {
+    "id": "pol_leg_001",
+    "area": "policial",
+    "subject": "Legislação Penal",
+    "question": "O crime de homicídio qualificado é considerado crime hediondo em todas as suas formas.",
+    "correctAnswer": false,
+    "explanation": "ERRADO. Segundo a Lei 8.072/90 (Lei dos Crimes Hediondos), apenas o homicídio qualificado quando praticado em atividade típica de grupo de extermínio, ainda que cometido por um só agente, é considerado hediondo. Nem todas as formas de homicídio qualificado são hediondas.",
+    "difficulty": "medio"
+  },
+  {
+    "id": "fisc_cont_001",
+    "area": "fiscal-bancaria",
+    "subject": "Contabilidade",
+    "question": "O Balanço Patrimonial é composto por Ativo, Passivo e Patrimônio Líquido, representando a posição patrimonial e financeira da entidade em determinada data.",
+    "correctAnswer": true,
+    "explanation": "CERTO. O Balanço Patrimonial é uma das principais demonstrações contábeis e apresenta a posição estática da empresa, dividindo-se em Ativo (bens e direitos), Passivo (obrigações) e Patrimônio Líquido (diferença entre Ativo e Passivo).",
+    "difficulty": "facil"
+  },
+  {
+    "id": "ger_port_001",
+    "area": "conhecimentos-gerais",
+    "subject": "Português",
+    "question": "Em 'O Brasil é um país de dimensões continentais', a palavra 'dimensões' é um substantivo abstrato.",
+    "correctAnswer": true,
+    "explanation": "CERTO. Substantivos abstratos são aqueles que nomeiam ações, estados, qualidades ou sentimentos. 'Dimensões' refere-se a uma qualidade (tamanho/extensão), sendo portanto abstrato.",
+    "difficulty": "medio"
+  },
+  {
+    "id": "ger_rac_001",
+    "area": "conhecimentos-gerais",
+    "subject": "Raciocínio Lógico",
+    "question": "Se todo A é B, e todo B é C, então todo A é C.",
+    "correctAnswer": true,
+    "explanation": "CERTO. Este é um silogismo válido, conhecido como Barbara. A propriedade transitiva garante que se A está contido em B, e B está contido em C, então A está contido em C.",
+    "difficulty": "medio"
+  },
+  {
+    "id": "jur_penal_001",
+    "area": "juridica",
+    "subject": "Direito Penal",
+    "question": "A tentativa é punível com a pena correspondente ao crime consumado, diminuída de um a dois terços.",
+    "correctAnswer": true,
+    "explanation": "CERTO. Conforme art. 14, parágrafo único do Código Penal, 'salvo disposição em contrário, pune-se a tentativa com a pena correspondente ao crime consumado, diminuída de um a dois terços'.",
+    "difficulty": "facil"
+  },
+  {
+    "id": "pol_proc_001",
+    "area": "policial",
+    "subject": "Procedimentos Policiais",
+    "question": "A prisão em flagrante pode ser realizada por qualquer pessoa do povo, não apenas por policiais.",
+    "correctAnswer": true,
+    "explanation": "CERTO. Segundo o art. 301 do CPP, 'qualquer do povo poderá e as autoridades policiais e seus agentes deverão prender quem quer que seja encontrado em flagrante delito'. A prisão em flagrante é uma faculdade para particulares e um dever para autoridades.",
+    "difficulty": "medio"
+  },
+  {
+    "id": "fisc_econ_001",
+    "area": "fiscal-bancaria",
+    "subject": "Economia",
+    "question": "Inflação é o aumento persistente e generalizado no nível geral de preços da economia.",
+    "correctAnswer": true,
+    "explanation": "CERTO. A inflação é caracterizada pelo aumento contínuo (persistente) e abrangente (generalizado) dos preços. Aumentos pontuais ou isolados não caracterizam inflação.",
+    "difficulty": "facil"
+  },
+  {
+    "id": "ger_atu_001",
+    "area": "conhecimentos-gerais",
+    "subject": "Atualidades",
+    "question": "A Organização das Nações Unidas (ONU) foi criada após a Segunda Guerra Mundial, em 1945.",
+    "correctAnswer": true,
+    "explanation": "CERTO. A ONU foi fundada em 24 de outubro de 1945, logo após o fim da Segunda Guerra Mundial, com o objetivo de manter a paz e a segurança internacionais.",
+    "difficulty": "facil"
+  }
+]
