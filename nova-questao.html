@@ -322,7 +322,7 @@
                     <button type="button" class="btn-large btn-cancel" onclick="window.location.href='dashboard.html'">
                         Cancelar
                     </button>
-                    <button type="submit" class="btn-large btn-submit">
+                    <button type="submit" id="submitBtn" class="btn-large btn-submit">
                         💾 Salvar Questão
                     </button>
                 </div>
@@ -354,88 +354,58 @@
             event.currentTarget.classList.add('selected');
         }
 
-        // Gerar ID único
-        function generateId() {
-            return 'q_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-        }
-
-        // Submeter formulário
-        document.getElementById('questionForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const form = e.target;
-            const loading = document.getElementById('loading');
-            const successMsg = document.getElementById('successMessage');
-            const errorMsg = document.getElementById('errorMessage');
-
-            // Limpar mensagens
-            successMsg.classList.remove('show');
-            errorMsg.classList.remove('show');
-
-            // Mostrar loading
-            form.style.display = 'none';
-            loading.classList.add('show');
+        // Salvar questão
+        async function saveQuestion(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Salvando...';
 
             try {
                 const question = {
-                    id: generateId(),
+                    id: `q_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
                     area: document.getElementById('area').value,
                     subject: document.getElementById('subject').value,
+                    difficulty: document.getElementById('difficulty').value,
                     question: document.getElementById('question').value,
-                    correctAnswer: document.querySelector('input[name="correctAnswer"]:checked').value === 'true',
-                    explanation: document.getElementById('explanation').value,
-                    difficulty: document.getElementById('difficulty').value
+                    correctAnswer: document.getElementById('correctAnswer').value === 'true',
+                    explanation: document.getElementById('explanation').value
                 };
 
+                console.log('💾 Salvando questão no Supabase:', question);
+
+                // Salvar no Supabase via rota do servidor
                 const response = await fetch(`${SUPABASE_URL}/functions/v1/make-server-50734795/questions`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${SUPABASE_KEY}`,
-                        'x-admin-code': adminCode
+                        'Authorization': `Bearer ${SUPABASE_KEY}`
                     },
-                    body: JSON.stringify({
-                        questions: [question],
-                        area: question.area
-                    })
+                    body: JSON.stringify(question)
                 });
 
                 if (!response.ok) {
-                    const error = await response.json();
-                    throw new Error(error.message || 'Erro ao salvar questão');
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Erro ao salvar questão');
                 }
 
                 const result = await response.json();
+                console.log('✅ Questão salva com sucesso:', result);
 
-                // Sucesso
-                loading.classList.remove('show');
-                successMsg.textContent = '✅ Questão salva com sucesso!';
-                successMsg.classList.add('show');
-
-                // Limpar formulário
-                form.reset();
-                document.querySelectorAll('.radio-option').forEach(el => {
-                    el.classList.remove('selected');
-                });
-
-                // Scroll para o topo
-                window.scrollTo(0, 0);
-
-                // Mostrar formulário novamente após 2 segundos
-                setTimeout(() => {
-                    form.style.display = 'block';
-                    successMsg.classList.remove('show');
-                }, 2000);
-
+                alert('✅ Questão salva com sucesso!');
+                window.location.href = 'dashboard.html';
+                
             } catch (error) {
-                console.error('Erro:', error);
-                loading.classList.remove('show');
-                form.style.display = 'block';
-                errorMsg.textContent = '❌ Erro ao salvar questão: ' + error.message;
-                errorMsg.classList.add('show');
-                window.scrollTo(0, 0);
+                console.error('❌ Erro ao salvar questão:', error);
+                alert(`❌ Erro ao salvar questão: ${error.message}`);
+                submitBtn.disabled = false;
+                submitBtn.textContent = '💾 Salvar Questão';
             }
-        });
+        }
+
+        // Submeter formulário
+        document.getElementById('questionForm').addEventListener('submit', saveQuestion);
     </script>
 </body>
 </html>

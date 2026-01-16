@@ -483,48 +483,99 @@
 
         // Carregar estatísticas
         async function loadStats() {
-            // MODO DEMO: Usar dados fictícios
-            console.log('📊 MODO DEMO: Carregando estatísticas fictícias...');
-            
-            document.getElementById('stat-juridica').textContent = '342';
-            document.getElementById('stat-policial').textContent = '289';
-            document.getElementById('stat-fiscal').textContent = '401';
-            document.getElementById('stat-gerais').textContent = '338';
+            try {
+                console.log('📊 Carregando estatísticas REAIS do Supabase...');
+                
+                // Buscar TODAS as questões do Supabase
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/kv_store_50734795?select=value`, {
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar questões');
+                }
+
+                const rows = await response.json();
+                
+                // Filtrar apenas questões (keys que começam com "question:")
+                const questions = rows
+                    .filter(row => row.value && row.value.id)
+                    .map(row => row.value);
+
+                console.log(`✅ ${questions.length} questões carregadas do Supabase`);
+
+                // Contar por área
+                const juridica = questions.filter(q => q.area === 'juridica').length;
+                const policial = questions.filter(q => q.area === 'policial').length;
+                const fiscal = questions.filter(q => q.area === 'fiscal-bancaria').length;
+                const gerais = questions.filter(q => q.area === 'conhecimentos-gerais').length;
+
+                document.getElementById('stat-juridica').textContent = juridica;
+                document.getElementById('stat-policial').textContent = policial;
+                document.getElementById('stat-fiscal').textContent = fiscal;
+                document.getElementById('stat-gerais').textContent = gerais;
+
+            } catch (error) {
+                console.error('❌ Erro ao carregar estatísticas:', error);
+                // Fallback para 0 em caso de erro
+                document.getElementById('stat-juridica').textContent = '0';
+                document.getElementById('stat-policial').textContent = '0';
+                document.getElementById('stat-fiscal').textContent = '0';
+                document.getElementById('stat-gerais').textContent = '0';
+            }
         }
 
         // Carregar questões
         async function loadQuestions(area = '', difficulty = '') {
-            // MODO DEMO: Usar dados fictícios
-            console.log('📋 MODO DEMO: Carregando questões fictícias...');
-            
-            allQuestions = generateMockQuestions(50, area, difficulty);
-            filteredQuestions = allQuestions;
-            
-            renderQuestions();
+            try {
+                console.log('📋 Carregando questões REAIS do Supabase...');
+                
+                // Buscar TODAS as questões do Supabase
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/kv_store_50734795?select=value`, {
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
 
-            function generateMockQuestions(count, area, difficulty) {
-                const questions = [];
-                const areas = ['juridica', 'policial', 'fiscal-bancaria', 'conhecimentos-gerais'];
-                const difficulties = ['facil', 'medio', 'dificil'];
-                const subjects = ['Direito Civil', 'Criminalidade', 'Tributação', 'Geografia'];
-
-                for (let i = 0; i < count; i++) {
-                    const qArea = area || areas[Math.floor(Math.random() * areas.length)];
-                    const qDifficulty = difficulty || difficulties[Math.floor(Math.random() * difficulties.length)];
-                    const qSubject = subjects[Math.floor(Math.random() * subjects.length)];
-
-                    questions.push({
-                        id: `q${i}`,
-                        area: qArea,
-                        difficulty: qDifficulty,
-                        subject: qSubject,
-                        question: `Questão ${i + 1}: Qual é o significado de ${qSubject}?`,
-                        correctAnswer: Math.random() > 0.5,
-                        explanation: `Explicação para Questão ${i + 1}: ${qSubject} é um campo importante em ${qArea}.`
-                    });
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar questões');
                 }
 
-                return questions;
+                const rows = await response.json();
+                
+                // Filtrar apenas questões (keys que começam com "question:")
+                let questions = rows
+                    .filter(row => row.value && row.value.id)
+                    .map(row => row.value);
+
+                console.log(`✅ ${questions.length} questões carregadas`);
+
+                // Filtrar por área se especificado
+                if (area) {
+                    questions = questions.filter(q => q.area === area);
+                }
+
+                // Filtrar por dificuldade se especificado
+                if (difficulty) {
+                    questions = questions.filter(q => q.difficulty === difficulty);
+                }
+
+                allQuestions = questions;
+                filteredQuestions = questions;
+                
+                renderQuestions();
+
+            } catch (error) {
+                console.error('❌ Erro ao carregar questões:', error);
+                allQuestions = [];
+                filteredQuestions = [];
+                renderQuestions();
             }
         }
 
