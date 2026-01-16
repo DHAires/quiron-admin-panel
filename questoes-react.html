@@ -1496,4 +1496,1466 @@
         }
     </script>
 </body>
+</html>        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 30px;
+        }
+
+        .toolbar {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 30px;
+        }
+
+        .sidebar h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .area-list {
+            list-style: none;
+        }
+
+        .area-item {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .area-item:hover {
+            background: #f9fafb;
+        }
+
+        .area-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .area-badge {
+            background: rgba(0,0,0,0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .materia-tree {
+            margin-top: 15px;
+            padding-left: 15px;
+        }
+
+        .materia-item {
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-left: 3px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .materia-item:hover {
+            border-left-color: #667eea;
+            background: #f9fafb;
+        }
+
+        .materia-item.active {
+            border-left-color: #667eea;
+            background: #e0e7ff;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 30px;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .content-header h2 {
+            font-size: 22px;
+            color: #333;
+        }
+
+        .stats-mini {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stat-number {
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .questions-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .question-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .question-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .question-id {
+            font-size: 12px;
+            font-weight: 600;
+            color: #667eea;
+            background: #e0e7ff;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .question-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .tag-area {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .tag-banca {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .tag-ano {
+            background: #fce7f3;
+            color: #9f1239;
+        }
+
+        .question-text {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .alternatives {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .alternative {
+            padding: 12px 15px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #555;
+            background: #f9fafb;
+        }
+
+        .alternative.correct {
+            border-color: #10b981;
+            background: #d1fae5;
+            color: #065f46;
+            font-weight: 600;
+        }
+
+        .alternative-label {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background: white;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 21px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .alternative.correct .alternative-label {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+
+        .explanation {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .explanation-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+
+        .explanation-text {
+            font-size: 13px;
+            color: #1e3a8a;
+            line-height: 1.6;
+        }
+
+        .question-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: #9ca3af;
+        }
+
+        .empty-state-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .empty-state-text {
+            font-size: 18px;
+            color: #6b7280;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+        }
+
+        .modal-header {
+            margin-bottom: 30px;
+        }
+
+        .modal-header h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .alternatives-editor {
+            display: grid;
+            gap: 15px;
+        }
+
+        .alternative-editor {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .alternative-editor input {
+            flex: 1;
+        }
+
+        .alternative-editor .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+        }
+
+        .loading-spinner {
+            border: 4px solid #e5e7eb;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>
+            <span>📚</span>
+            Questões React - Gerenciamento por Matéria
+        </h1>
+        <button class="btn btn-secondary" onclick="window.location.href='dashboard.html'">
+            ← Voltar ao Dashboard
+        </button>
+    </div>
+
+    <div class="container">
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Buscar questões..." onkeyup="filterQuestions()">
+            </div>
+            <div class="filters">
+                <select class="filter-select" id="filterBanca" onchange="filterQuestions()">
+                    <option value="">🏛️ Todas as Bancas</option>
+                    <option value="CESPE">CESPE</option>
+                    <option value="FCC">FCC</option>
+                    <option value="FGV">FGV</option>
+                    <option value="VUNESP">VUNESP</option>
+                </select>
+                <select class="filter-select" id="filterAno" onchange="filterQuestions()">
+                    <option value="">📅 Todos os Anos</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                </select>
+                <button class="btn btn-success" onclick="openAddModal()">
+                    ➕ Nova Questão
+                </button>
+            </div>
+        </div>
+
+        <!-- Layout -->
+        <div class="layout">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <h3>📂 Áreas & Matérias</h3>
+                <ul class="area-list" id="areaList">
+                    <!-- Carregado dinamicamente -->
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="content-header">
+                    <div>
+                        <h2 id="contentTitle">Todas as Questões</h2>
+                        <div class="stats-mini" id="statsBar">
+                            <div class="stat">
+                                <span class="stat-number" id="statTotal">0</span>
+                                <span>questões</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="questionsContainer">
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Carregando questões...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Adicionar/Editar -->
+    <div class="modal" id="questionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">➕ Nova Questão</h2>
+            </div>
+
+            <form id="questionForm">
+                <div class="form-group">
+                    <label>ID da Questão *</label>
+                    <input type="text" id="inputId" required placeholder="Ex: penal-apl-01">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>Área *</label>
+                        <select id="inputArea" required onchange="updateMateriasList()">
+                            <option value="">Selecione...</option>
+                            <option value="juridica">📘 Jurídica</option>
+                            <option value="policial">🚔 Policial</option>
+                            <option value="fiscal-bancaria">💰 Fiscal/Bancária</option>
+                            <option value="conhecimentos-gerais">🧠 Conhecimentos Gerais</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Matéria *</label>
+                        <select id="inputMateria" required>
+                            <option value="">Selecione uma área primeiro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Enunciado *</label>
+                    <textarea id="inputEnunciado" required placeholder="Digite o enunciado da questão..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Alternativas *</label>
+                    <div class="alternatives-editor">
+                        <div class="alternative-editor">
+                            <span style="font-weight: 700; width: 30px;">A)</span>
+                            <input type="text" id="inputAltA" required placeholder="Alternativa A">
+                            <div class="radio-label">
+                                <input type="radio" name="gabarito" value="A" id="gabA">
+                                <label for="gabA">Correta</label>
+                            </div>
+                        </div>
+                        <div class="alternative-editor">
+                            <span style="font-weight: 700; width: 30px;">B)</span>
+                            <input type="text" id="inputAltB" required placeholder="Alternativa B">
+                            <div class="radio-label">
+                                <input type="radio" name="gabarito" value="B" id="gabB">
+                                <label for="gabB">Correta</label>
+                            </div>
+                        </div>
+                        <div class="alternative-editor">
+                            <span style="font-weight: 700; width: 30px;">C)</span>
+                            <input type="text" id="inputAltC" required placeholder="Alternativa C">
+                            <div class="radio-label">
+                                <input type="radio" name="gabarito" value="C" id="gabC">
+                                <label for="gabC">Correta</label>
+                            </div>
+                        </div>
+                        <div class="alternative-editor">
+                            <span style="font-weight: 700; width: 30px;">D)</span>
+                            <input type="text" id="inputAltD" required placeholder="Alternativa D">
+                            <div class="radio-label">
+                                <input type="radio" name="gabarito" value="D" id="gabD">
+                                <label for="gabD">Correta</label>
+                            </div>
+                        </div>
+                        <div class="alternative-editor">
+                            <span style="font-weight: 700; width: 30px;">E)</span>
+                            <input type="text" id="inputAltE" required placeholder="Alternativa E">
+                            <div class="radio-label">
+                                <input type="radio" name="gabarito" value="E" id="gabE">
+                                <label for="gabE">Correta</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Explicação *</label>
+                    <textarea id="inputExplicacao" required placeholder="Digite a explicação detalhada..." style="min-height: 120px;"></textarea>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>Banca</label>
+                        <input type="text" id="inputBanca" placeholder="Ex: CESPE">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ano</label>
+                        <input type="number" id="inputAno" placeholder="Ex: 2023">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cargo</label>
+                        <input type="text" id="inputCargo" placeholder="Ex: Delegado">
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeModal()">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success" style="flex: 1;">
+                        💾 Salvar Questão
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://lrmabyfaunhrdvdzocrz.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxybWFieWZhdW5ocmR2ZHpvY3J6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzNDQ4NDUsImV4cCI6MjA3ODkyMDg0NX0.XALJ51MUjxw93j4NkJu3cFusKOAIY1LlClg_tbIy_r0';
+        let adminCode = localStorage.getItem('quiron_admin_code');
+
+        // Verificar autenticação
+        if (localStorage.getItem('quiron_admin_logged') !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        // Estrutura de áreas e matérias
+        const ESTRUTURA = {
+            'juridica': {
+                nome: '📘 Jurídica',
+                materias: {
+                    'Direito Constitucional': [
+                        { id: 'direitos-garantias', nome: 'Direitos e Garantias Fundamentais', questoes: 10 },
+                        { id: 'organizacao-estado', nome: 'Organização do Estado', questoes: 10 },
+                        { id: 'poder-legislativo', nome: 'Poder Legislativo', questoes: 10 },
+                        { id: 'poder-executivo', nome: 'Poder Executivo', questoes: 10 },
+                        { id: 'poder-judiciario', nome: 'Poder Judiciário', questoes: 10 },
+                        { id: 'controle-constitucionalidade', nome: 'Controle de Constitucionalidade', questoes: 10 },
+                        { id: 'direitos-sociais', nome: 'Direitos Sociais', questoes: 10 },
+                        { id: 'principios-fundamentais', nome: 'Princípios Fundamentais', questoes: 10 },
+                        { id: 'remedios-constitucionais', nome: 'Remédios Constitucionais', questoes: 10 }
+                    ],
+                    'Direito Administrativo': [
+                        { id: 'principios-administrativos', nome: 'Princípios Administrativos', questoes: 10 },
+                        { id: 'atos-administrativos', nome: 'Atos Administrativos', questoes: 10 },
+                        { id: 'licitacoes-contratos', nome: 'Licitações e Contratos', questoes: 10 },
+                        { id: 'servicos-publicos', nome: 'Serviços Públicos', questoes: 10 },
+                        { id: 'servidores-publicos', nome: 'Servidores Públicos', questoes: 10 },
+                        { id: 'responsabilidade-civil', nome: 'Responsabilidade Civil do Estado', questoes: 10 },
+                        { id: 'poderes-administrativos', nome: 'Poderes Administrativos', questoes: 10 }
+                    ],
+                    'Direito Civil': [
+                        { id: 'parte-geral', nome: 'Parte Geral', questoes: 15 },
+                        { id: 'obrigacoes', nome: 'Obrigações', questoes: 12 },
+                        { id: 'contratos', nome: 'Contratos', questoes: 15 },
+                        { id: 'responsabilidade-civil-geral', nome: 'Responsabilidade Civil', questoes: 10 }
+                    ],
+                    'Direito Penal': [
+                        { id: 'aplicacao-lei-penal', nome: 'Aplicação da Lei Penal', questoes: 10 },
+                        { id: 'teoria-crime', nome: 'Teoria do Crime', questoes: 15 },
+                        { id: 'crimes-parte-especial', nome: 'Crimes da Parte Especial', questoes: 20 },
+                        { id: 'penas', nome: 'Penas e Medidas de Segurança', questoes: 10 }
+                    ],
+                    'Direito Processual Penal': [
+                        { id: 'principios-processo-penal', nome: 'Princípios do Processo Penal', questoes: 10 },
+                        { id: 'inquerito-policial', nome: 'Inquérito Policial', questoes: 10 },
+                        { id: 'acao-penal', nome: 'Ação Penal', questoes: 10 },
+                        { id: 'provas', nome: 'Provas', questoes: 12 }
+                    ],
+                    'Direito do Trabalho': [
+                        { id: 'principios-trabalho', nome: 'Princípios do Direito do Trabalho', questoes: 8 },
+                        { id: 'contrato-trabalho', nome: 'Contrato de Trabalho', questoes: 12 }
+                    ],
+                    'Direito Tributário': [
+                        { id: 'principios-tributarios', nome: 'Princípios Tributários', questoes: 10 },
+                        { id: 'competencia-tributaria', nome: 'Competência Tributária', questoes: 8 }
+                    ]
+                }
+            },
+            'policial': {
+                nome: '🚔 Policial',
+                materias: {
+                    'Legislação Penal': [
+                        { id: 'codigo-penal-geral', nome: 'Código Penal - Parte Geral', questoes: 30 },
+                        { id: 'crimes-pessoa', nome: 'Crimes contra a Pessoa', questoes: 25 },
+                        { id: 'crimes-patrimonio', nome: 'Crimes contra o Patrimônio', questoes: 28 },
+                        { id: 'crimes-administracao', nome: 'Crimes contra a Administração', questoes: 22 },
+                        { id: 'lei-drogas', nome: 'Lei de Drogas (Lei 11.343/2006)', questoes: 30 },
+                        { id: 'crimes-hediondos', nome: 'Crimes Hediondos (Lei 8.072/90)', questoes: 25 },
+                        { id: 'organizacao-criminosa', nome: 'Organização Criminosa (Lei 12.850/2013)', questoes: 28 },
+                        { id: 'violencia-domestica', nome: 'Violência Doméstica (Lei Maria da Penha)', questoes: 26 },
+                        { id: 'crimes-transito', nome: 'Crimes de Trânsito', questoes: 28 }
+                    ],
+                    'Processo Penal': [
+                        { id: 'inquerito-policial', nome: 'Inquérito Policial', questoes: 30 },
+                        { id: 'provas', nome: 'Provas', questoes: 28 },
+                        { id: 'prisoes', nome: 'Prisões (Flagrante, Preventiva, Temporária)', questoes: 32 },
+                        { id: 'medidas-cautelares', nome: 'Medidas Cautelares', questoes: 25 },
+                        { id: 'busca-apreensao', nome: 'Busca e Apreensão', questoes: 22 },
+                        { id: 'interceptacao-telefonica', nome: 'Interceptação Telefônica', questoes: 20 },
+                        { id: 'acao-penal', nome: 'Ação Penal', questoes: 26 },
+                        { id: 'competencia-penal', nome: 'Competência', questoes: 24 },
+                        { id: 'procedimentos', nome: 'Procedimentos', questoes: 25 }
+                    ],
+                    'Criminalística': [
+                        { id: 'pericia-criminal', nome: 'Perícia Criminal', questoes: 25 },
+                        { id: 'local-crime', nome: 'Local de Crime', questoes: 28 },
+                        { id: 'documentoscopia', nome: 'Documentoscopia', questoes: 22 },
+                        { id: 'balistica-forense', nome: 'Balística Forense', questoes: 20 },
+                        { id: 'papiloscopia', nome: 'Papiloscopia', questoes: 18 },
+                        { id: 'genetica-forense', nome: 'Genética Forense (DNA)', questoes: 22 },
+                        { id: 'fotografia-forense', nome: 'Fotografia Forense', questoes: 15 },
+                        { id: 'toxicologia-forense', nome: 'Toxicologia Forense', questoes: 18 },
+                        { id: 'informatica-forense', nome: 'Informática Forense', questoes: 12 }
+                    ],
+                    'Direitos Humanos': [
+                        { id: 'declaracao-universal', nome: 'Declaração Universal dos Direitos Humanos', questoes: 25 },
+                        { id: 'pacto-san-jose', nome: 'Pacto de San José da Costa Rica', questoes: 22 },
+                        { id: 'direitos-civis-politicos', nome: 'Direitos Civis e Políticos', questoes: 20 },
+                        { id: 'direitos-economicos-sociais', nome: 'Direitos Econômicos, Sociais e Culturais', questoes: 18 },
+                        { id: 'sistema-global-protecao', nome: 'Sistema Global de Proteção', questoes: 20 },
+                        { id: 'sistema-interamericano', nome: 'Sistema Interamericano', questoes: 18 },
+                        { id: 'grupos-vulneraveis', nome: 'Grupos Vulneráveis', questoes: 15 },
+                        { id: 'mecanismos-protecao', nome: 'Mecanismos de Proteção', questoes: 12 },
+                        { id: 'tortura-tratamento-cruel', nome: 'Tortura e Tratamento Cruel', questoes: 14 }
+                    ],
+                    'Estatuto do Desarmamento': [
+                        { id: 'sinarm', nome: 'Sistema Nacional de Armas (SINARM)', questoes: 20 },
+                        { id: 'registro-armas', nome: 'Registro de Armas', questoes: 18 },
+                        { id: 'porte-arma', nome: 'Porte de Arma', questoes: 22 },
+                        { id: 'crimes-penas-armas', nome: 'Crimes e Penas', questoes: 25 },
+                        { id: 'competencia-armas', nome: 'Competência', questoes: 15 },
+                        { id: 'excecoes-desarmamento', nome: 'Exceções ao Desarmamento', questoes: 12 },
+                        { id: 'coleta-armas', nome: 'Coleta de Armas', questoes: 10 },
+                        { id: 'armas-uso-restrito', nome: 'Armas de Uso Restrito', questoes: 12 },
+                        { id: 'disposicoes-gerais-armas', nome: 'Disposições Gerais', questoes: 6 }
+                    ],
+                    'Legislação Penal Especial': [
+                        { id: 'crimes-transito-ctb', nome: 'Crimes de Trânsito (CTB)', questoes: 28 },
+                        { id: 'lei-tortura', nome: 'Lei de Tortura', questoes: 22 },
+                        { id: 'lavagem-dinheiro', nome: 'Lei de Lavagem de Dinheiro', questoes: 25 },
+                        { id: 'abuso-autoridade', nome: 'Lei de Abuso de Autoridade', questoes: 24 },
+                        { id: 'crimes-ambientais', nome: 'Crimes Ambientais', questoes: 20 },
+                        { id: 'estatuto-idoso-crimes', nome: 'Estatuto do Idoso - Crimes', questoes: 18 },
+                        { id: 'eca-crimes', nome: 'ECA - Crimes', questoes: 22 },
+                        { id: 'interceptacao-telefonica-lei', nome: 'Lei de Interceptação Telefônica', questoes: 16 },
+                        { id: 'crimes-raciais', nome: 'Crimes Raciais', questoes: 25 }
+                    ],
+                    'Medicina Legal': [
+                        { id: 'traumatologia-forense', nome: 'Traumatologia Forense', questoes: 25 },
+                        { id: 'tanatologia', nome: 'Tanatologia (Morte)', questoes: 28 },
+                        { id: 'lesoes-corporais', nome: 'Lesões Corporais', questoes: 22 },
+                        { id: 'asfixias', nome: 'Asfixias', questoes: 20 },
+                        { id: 'sexologia-forense', nome: 'Sexologia Forense', questoes: 18 },
+                        { id: 'toxicologia-medica', nome: 'Toxicologia', questoes: 20 },
+                        { id: 'antropologia-forense', nome: 'Antropologia Forense', questoes: 15 },
+                        { id: 'documentos-medico-legais', nome: 'Documentos Médico-Legais', questoes: 12 },
+                        { id: 'imputabilidade', nome: 'Imputabilidade', questoes: 10 }
+                    ],
+                    'Ética Policial': [
+                        { id: 'codigo-etica-policial', nome: 'Código de Ética Policial', questoes: 25 },
+                        { id: 'principios-eticos', nome: 'Princípios Éticos', questoes: 22 },
+                        { id: 'deveres-policial', nome: 'Deveres do Policial', questoes: 20 },
+                        { id: 'proibicoes-policial', nome: 'Proibições', questoes: 18 },
+                        { id: 'uso-forca-etica', nome: 'Uso da Força', questoes: 20 },
+                        { id: 'abuso-poder', nome: 'Abuso de Poder', questoes: 15 },
+                        { id: 'relacionamento-comunidade', nome: 'Relacionamento com a Comunidade', questoes: 12 },
+                        { id: 'dh-atividade-policial', nome: 'Direitos Humanos na Atividade Policial', questoes: 10 },
+                        { id: 'condutas-vedadas', nome: 'Condutas Vedadas', questoes: 8 }
+                    ],
+                    'Uso Progressivo da Força': [
+                        { id: 'principios-uso-forca', nome: 'Princípios do Uso da Força', questoes: 20 },
+                        { id: 'niveis-forca', nome: 'Níveis de Força', questoes: 22 },
+                        { id: 'presenca-policial', nome: 'Presença Policial', questoes: 15 },
+                        { id: 'verbalizacao', nome: 'Verbalização', questoes: 16 },
+                        { id: 'controle-contato', nome: 'Controle de Contato', questoes: 14 },
+                        { id: 'tecnicas-imobilizacao', nome: 'Técnicas de Imobilização', questoes: 12 },
+                        { id: 'forca-menos-letal', nome: 'Força Menos Letal', questoes: 15 },
+                        { id: 'forca-letal', nome: 'Força Letal', questoes: 10 },
+                        { id: 'relatorio-uso-forca', nome: 'Relatório de Uso da Força', questoes: 8 }
+                    ],
+                    'Abordagem e Técnicas': [
+                        { id: 'abordagem-pessoas', nome: 'Abordagem a Pessoas', questoes: 28 },
+                        { id: 'abordagem-veiculos', nome: 'Abordagem a Veículos', questoes: 25 },
+                        { id: 'revista-pessoal', nome: 'Revista Pessoal', questoes: 22 },
+                        { id: 'algemacao', nome: 'Algemação', questoes: 20 },
+                        { id: 'conducao-presos', nome: 'Condução de Presos', questoes: 18 },
+                        { id: 'tecnicas-patrulhamento', nome: 'Técnicas de Patrulhamento', questoes: 20 },
+                        { id: 'comunicacao-operacional', nome: 'Comunicação Operacional', questoes: 16 },
+                        { id: 'seguranca-ocorrencias', nome: 'Segurança em Ocorrências', questoes: 24 },
+                        { id: 'preservacao-local-crime', nome: 'Preservação de Local de Crime', questoes: 17 }
+                    ]
+                }
+            },
+            'fiscal-bancaria': {
+                nome: '💰 Fiscal-Bancária',
+                materias: {
+                    'Economia': [
+                        { id: 'microeconomia', nome: 'Microeconomia', questoes: 35 },
+                        { id: 'macroeconomia', nome: 'Macroeconomia', questoes: 38 },
+                        { id: 'politica-fiscal-monetaria', nome: 'Política Fiscal e Monetária', questoes: 32 },
+                        { id: 'inflacao', nome: 'Inflação', questoes: 28 },
+                        { id: 'pib-crescimento', nome: 'PIB e Crescimento Econômico', questoes: 30 },
+                        { id: 'comercio-internacional', nome: 'Comércio Internacional', questoes: 25 },
+                        { id: 'taxa-cambio', nome: 'Taxa de Câmbio', questoes: 22 },
+                        { id: 'mercado-trabalho', nome: 'Mercado de Trabalho', questoes: 35 },
+                        { id: 'desenvolvimento-economico', nome: 'Desenvolvimento Econômico', questoes: 28 }
+                    ],
+                    'Matemática Financeira': [
+                        { id: 'porcentagem', nome: 'Porcentagem', questoes: 35 },
+                        { id: 'juros-simples', nome: 'Juros Simples', questoes: 38 },
+                        { id: 'juros-compostos', nome: 'Juros Compostos', questoes: 40 },
+                        { id: 'descontos', nome: 'Descontos', questoes: 32 },
+                        { id: 'taxas-juros', nome: 'Taxas de Juros', questoes: 30 },
+                        { id: 'amortizacao', nome: 'Amortização', questoes: 35 },
+                        { id: 'price-sac', nome: 'Sistema Price e SAC', questoes: 28 },
+                        { id: 'equivalencia-capitais', nome: 'Equivalência de Capitais', questoes: 32 },
+                        { id: 'rendas-anuidades', nome: 'Rendas e Anuidades', questoes: 30 }
+                    ],
+                    'Contabilidade Geral': [
+                        { id: 'patrimonio', nome: 'Patrimônio', questoes: 40 },
+                        { id: 'contas-contabeis', nome: 'Contas Contábeis', questoes: 38 },
+                        { id: 'balanco-patrimonial', nome: 'Balanço Patrimonial', questoes: 42 },
+                        { id: 'dre', nome: 'DRE - Demonstração do Resultado', questoes: 40 },
+                        { id: 'lancamentos-contabeis', nome: 'Lançamentos Contábeis', questoes: 35 },
+                        { id: 'depreciacao', nome: 'Depreciação', questoes: 30 },
+                        { id: 'regime-competencia-caixa', nome: 'Regime de Competência e Caixa', questoes: 28 },
+                        { id: 'provisoes', nome: 'Provisões', questoes: 32 },
+                        { id: 'analise-balancos', nome: 'Análise de Balanços', questoes: 35 }
+                    ],
+                    'Contabilidade Pública': [
+                        { id: 'principios-contab-publica', nome: 'Princípios da Contabilidade Pública', questoes: 35 },
+                        { id: 'receita-publica', nome: 'Receita Pública', questoes: 38 },
+                        { id: 'despesa-publica', nome: 'Despesa Pública', questoes: 40 },
+                        { id: 'lrf', nome: 'Lei de Responsabilidade Fiscal', questoes: 42 },
+                        { id: 'balanco-orcamentario', nome: 'Balanço Orçamentário', questoes: 32 },
+                        { id: 'balanco-financeiro', nome: 'Balanço Financeiro', questoes: 28 },
+                        { id: 'balanco-patrimonial-publico', nome: 'Balanço Patrimonial Público', questoes: 30 },
+                        { id: 'divida-ativa', nome: 'Dívida Ativa', questoes: 20 },
+                        { id: 'restos-pagar', nome: 'Restos a Pagar', questoes: 25 }
+                    ],
+                    'Auditoria': [
+                        { id: 'conceitos-objetivos-auditoria', nome: 'Conceitos e Objetivos da Auditoria', questoes: 30 },
+                        { id: 'auditoria-interna', nome: 'Auditoria Interna', questoes: 32 },
+                        { id: 'auditoria-externa', nome: 'Auditoria Externa', questoes: 35 },
+                        { id: 'auditoria-governamental', nome: 'Auditoria Governamental', questoes: 38 },
+                        { id: 'normas-auditoria', nome: 'Normas de Auditoria', questoes: 30 },
+                        { id: 'procedimentos-auditoria', nome: 'Procedimentos de Auditoria', questoes: 32 },
+                        { id: 'papeis-trabalho', nome: 'Papéis de Trabalho', questoes: 25 },
+                        { id: 'relatorio-auditoria', nome: 'Relatório de Auditoria', questoes: 23 },
+                        { id: 'controle-interno', nome: 'Controle Interno', questoes: 30 }
+                    ],
+                    'Orçamento Público': [
+                        { id: 'principios-orcamentarios', nome: 'Princípios Orçamentários', questoes: 35 },
+                        { id: 'ciclo-orcamentario', nome: 'Ciclo Orçamentário', questoes: 30 },
+                        { id: 'ppa', nome: 'PPA - Plano Plurianual', questoes: 28 },
+                        { id: 'ldo', nome: 'LDO - Lei de Diretrizes Orçamentárias', questoes: 30 },
+                        { id: 'loa', nome: 'LOA - Lei Orçamentária Anual', questoes: 32 },
+                        { id: 'creditos-adicionais', nome: 'Créditos Adicionais', questoes: 25 },
+                        { id: 'classificacao-orcamentaria', nome: 'Classificação Orçamentária', questoes: 28 },
+                        { id: 'execucao-orcamentaria', nome: 'Execução Orçamentária', questoes: 20 },
+                        { id: 'controle-fiscalizacao', nome: 'Controle e Fiscalização', questoes: 25 }
+                    ],
+                    'Administração Financeira': [
+                        { id: 'analise-investimentos', nome: 'Análise de Investimentos', questoes: 32 },
+                        { id: 'vpl', nome: 'Valor Presente Líquido (VPL)', questoes: 30 },
+                        { id: 'tir', nome: 'Taxa Interna de Retorno (TIR)', questoes: 28 },
+                        { id: 'payback', nome: 'Payback', questoes: 25 },
+                        { id: 'estrutura-capital', nome: 'Estrutura de Capital', questoes: 30 },
+                        { id: 'custo-capital', nome: 'Custo de Capital', questoes: 28 },
+                        { id: 'capital-giro', nome: 'Administração do Capital de Giro', questoes: 32 },
+                        { id: 'risco-retorno', nome: 'Risco e Retorno', questoes: 25 },
+                        { id: 'alavancagem-financeira', nome: 'Alavancagem Financeira', questoes: 28 }
+                    ],
+                    'Sistema Financeiro Nacional': [
+                        { id: 'cmn', nome: 'Conselho Monetário Nacional (CMN)', questoes: 28 },
+                        { id: 'bacen', nome: 'Banco Central do Brasil (BACEN)', questoes: 35 },
+                        { id: 'cvm', nome: 'Comissão de Valores Mobiliários (CVM)', questoes: 30 },
+                        { id: 'bancos-comerciais', nome: 'Bancos Comerciais', questoes: 25 },
+                        { id: 'bancos-investimento', nome: 'Bancos de Investimento', questoes: 22 },
+                        { id: 'cooperativas-credito', nome: 'Cooperativas de Crédito', questoes: 20 },
+                        { id: 'corretoras-distribuidoras', nome: 'Corretoras e Distribuidoras', questoes: 25 },
+                        { id: 'sistema-pagamentos', nome: 'Sistema de Pagamentos Brasileiro', questoes: 28 },
+                        { id: 'politica-monetaria', nome: 'Política Monetária', questoes: 17 }
+                    ],
+                    'Mercado de Capitais': [
+                        { id: 'acoes', nome: 'Ações', questoes: 35 },
+                        { id: 'debentures', nome: 'Debêntures', questoes: 28 },
+                        { id: 'fundos-investimento', nome: 'Fundos de Investimento', questoes: 32 },
+                        { id: 'bolsa-valores', nome: 'Bolsa de Valores', questoes: 30 },
+                        { id: 'titulos-publicos', nome: 'Títulos Públicos', questoes: 25 },
+                        { id: 'derivativos', nome: 'Derivativos (Opções, Futuros)', questoes: 22 },
+                        { id: 'analise-fundamentalista', nome: 'Análise Fundamentalista', questoes: 18 },
+                        { id: 'analise-tecnica', nome: 'Análise Técnica', questoes: 20 },
+                        { id: 'risco-diversificacao', nome: 'Risco e Diversificação', questoes: 10 }
+                    ],
+                    'Produtos Bancários': [
+                        { id: 'conta-corrente', nome: 'Conta Corrente', questoes: 25 },
+                        { id: 'poupanca', nome: 'Poupança', questoes: 22 },
+                        { id: 'cartao-credito', nome: 'Cartão de Crédito', questoes: 28 },
+                        { id: 'cartao-debito', nome: 'Cartão de Débito', questoes: 20 },
+                        { id: 'emprestimos-financiamentos', nome: 'Empréstimos e Financiamentos', questoes: 30 },
+                        { id: 'cheque-especial', nome: 'Cheque Especial', questoes: 18 },
+                        { id: 'cambio', nome: 'Câmbio', questoes: 20 },
+                        { id: 'capitalizacao', nome: 'Capitalização', questoes: 22 },
+                        { id: 'previdencia-privada', nome: 'Previdência Privada', questoes: 25 }
+                    ]
+                }
+            },
+            'conhecimentos-gerais': {
+                nome: '🧠 Conhecimentos Gerais',
+                materias: {
+                    'Português': [
+                        { id: 'interpretacao-texto', nome: 'Interpretação de Texto', questoes: 40 },
+                        { id: 'gramatica', nome: 'Gramática', questoes: 38 },
+                        { id: 'sintaxe', nome: 'Sintaxe', questoes: 35 },
+                        { id: 'morfologia', nome: 'Morfologia', questoes: 32 },
+                        { id: 'ortografia-acentuacao', nome: 'Ortografia e Acentuação', questoes: 30 },
+                        { id: 'pontuacao', nome: 'Pontuação', questoes: 25 },
+                        { id: 'concordancia', nome: 'Concordância Verbal e Nominal', questoes: 35 },
+                        { id: 'regencia', nome: 'Regência Verbal e Nominal', questoes: 30 },
+                        { id: 'crase', nome: 'Crase', questoes: 35 }
+                    ],
+                    'Informática': [
+                        { id: 'windows-linux', nome: 'Windows e Linux', questoes: 35 },
+                        { id: 'office', nome: 'Microsoft Office (Word, Excel, PowerPoint)', questoes: 40 },
+                        { id: 'internet-navegadores', nome: 'Internet e Navegadores', questoes: 32 },
+                        { id: 'email-webmail', nome: 'E-mail e Webmail', questoes: 25 },
+                        { id: 'seguranca-informacao', nome: 'Segurança da Informação', questoes: 38 },
+                        { id: 'backup-armazenamento', nome: 'Backup e Armazenamento', questoes: 25 },
+                        { id: 'redes-computadores', nome: 'Redes de Computadores', questoes: 30 },
+                        { id: 'hardware-software', nome: 'Hardware e Software', questoes: 28 },
+                        { id: 'cloud-computing', nome: 'Cloud Computing', questoes: 27 }
+                    ],
+                    'Atualidades': [
+                        { id: 'politica-nacional', nome: 'Política Nacional', questoes: 35 },
+                        { id: 'economia-brasileira', nome: 'Economia Brasileira', questoes: 32 },
+                        { id: 'politica-internacional', nome: 'Política Internacional', questoes: 30 },
+                        { id: 'questoes-sociais', nome: 'Questões Sociais', questoes: 28 },
+                        { id: 'meio-ambiente-sustentabilidade', nome: 'Meio Ambiente e Sustentabilidade', questoes: 30 },
+                        { id: 'ciencia-tecnologia-atual', nome: 'Ciência e Tecnologia', questoes: 32 },
+                        { id: 'cultura-esportes', nome: 'Cultura e Esportes', questoes: 25 },
+                        { id: 'saude-publica', nome: 'Saúde Pública', questoes: 30 },
+                        { id: 'seguranca-publica', nome: 'Segurança Pública', questoes: 28 }
+                    ],
+                    'História do Brasil': [
+                        { id: 'brasil-colonia', nome: 'Brasil Colônia', questoes: 30 },
+                        { id: 'brasil-imperio', nome: 'Brasil Império', questoes: 28 },
+                        { id: 'primeira-republica', nome: 'Primeira República', questoes: 25 },
+                        { id: 'era-vargas', nome: 'Era Vargas', questoes: 32 },
+                        { id: 'ditadura-militar', nome: 'Ditadura Militar', questoes: 35 },
+                        { id: 'redemocratizacao', nome: 'Redemocratização', questoes: 30 },
+                        { id: 'brasil-contemporaneo', nome: 'Brasil Contemporâneo', questoes: 28 },
+                        { id: 'movimentos-sociais-hist', nome: 'Movimentos Sociais', questoes: 22 },
+                        { id: 'formacao-territorial', nome: 'Formação Territorial', questoes: 20 }
+                    ],
+                    'Geografia do Brasil': [
+                        { id: 'aspectos-fisicos', nome: 'Aspectos Físicos', questoes: 30 },
+                        { id: 'clima-vegetacao', nome: 'Clima e Vegetação', questoes: 28 },
+                        { id: 'hidrografia', nome: 'Hidrografia', questoes: 25 },
+                        { id: 'populacao-brasileira', nome: 'População Brasileira', questoes: 32 },
+                        { id: 'urbanizacao', nome: 'Urbanização', questoes: 28 },
+                        { id: 'industria', nome: 'Indústria', questoes: 25 },
+                        { id: 'agropecuaria', nome: 'Agropecuária', questoes: 27 },
+                        { id: 'energia-recursos-naturais', nome: 'Energia e Recursos Naturais', questoes: 20 },
+                        { id: 'regioes-brasileiras', nome: 'Regiões Brasileiras', questoes: 15 }
+                    ],
+                    'Cultura Geral': [
+                        { id: 'literatura-brasileira', nome: 'Literatura Brasileira', questoes: 35 },
+                        { id: 'literatura-mundial', nome: 'Literatura Mundial', questoes: 32 },
+                        { id: 'artes-plasticas', nome: 'Artes Plásticas', questoes: 28 },
+                        { id: 'musica', nome: 'Música', questoes: 30 },
+                        { id: 'cinema', nome: 'Cinema', questoes: 32 },
+                        { id: 'teatro', nome: 'Teatro', questoes: 25 },
+                        { id: 'arquitetura', nome: 'Arquitetura', questoes: 22 },
+                        { id: 'manifestacoes-culturais', nome: 'Manifestações Culturais', questoes: 40 },
+                        { id: 'patrimonio-cultural', nome: 'Patrimônio Cultural', questoes: 36 }
+                    ],
+                    'Política e Cidadania': [
+                        { id: 'sistema-politico-brasileiro', nome: 'Sistema Político Brasileiro', questoes: 28 },
+                        { id: 'partidos-politicos', nome: 'Partidos Políticos', questoes: 22 },
+                        { id: 'eleicoes', nome: 'Eleições', questoes: 25 },
+                        { id: 'politicas-publicas', nome: 'Políticas Públicas', questoes: 27 },
+                        { id: 'direitos-deveres-cidadao', nome: 'Direitos e Deveres do Cidadão', questoes: 30 },
+                        { id: 'democracia-participacao', nome: 'Democracia e Participação', questoes: 25 },
+                        { id: 'organizacoes-internacionais', nome: 'Organizações Internacionais', questoes: 23 },
+                        { id: 'movimentos-sociais-pol', nome: 'Movimentos Sociais', questoes: 18 },
+                        { id: 'etica-cidadania', nome: 'Ética e Cidadania', questoes: 12 }
+                    ],
+                    'Meio Ambiente': [
+                        { id: 'ecologia', nome: 'Ecologia', questoes: 25 },
+                        { id: 'biomas-brasileiros', nome: 'Biomas Brasileiros', questoes: 28 },
+                        { id: 'mudancas-climaticas', nome: 'Mudanças Climáticas', questoes: 30 },
+                        { id: 'desmatamento', nome: 'Desmatamento', questoes: 22 },
+                        { id: 'recursos-hidricos', nome: 'Recursos Hídricos', questoes: 20 },
+                        { id: 'energia-renovavel', nome: 'Energia Renovável', questoes: 18 },
+                        { id: 'desenvolvimento-sustentavel', nome: 'Desenvolvimento Sustentável', questoes: 22 },
+                        { id: 'legislacao-ambiental', nome: 'Legislação Ambiental', questoes: 20 },
+                        { id: 'conferencias-ambientais', nome: 'Conferências Ambientais', questoes: 15 }
+                    ],
+                    'Ciências e Tecnologia': [
+                        { id: 'biologia-saude', nome: 'Biologia e Saúde', questoes: 30 },
+                        { id: 'fisica-quimica', nome: 'Física e Química', questoes: 28 },
+                        { id: 'astronomia-espaco', nome: 'Astronomia e Espaço', questoes: 25 },
+                        { id: 'inovacoes-tecnologicas', nome: 'Inovações Tecnológicas', questoes: 32 },
+                        { id: 'inteligencia-artificial', nome: 'Inteligência Artificial', questoes: 28 },
+                        { id: 'biotecnologia', nome: 'Biotecnologia', questoes: 22 },
+                        { id: 'energia-sustentabilidade-tec', nome: 'Energia e Sustentabilidade', questoes: 25 },
+                        { id: 'pesquisa-cientifica', nome: 'Pesquisa Científica', questoes: 20 },
+                        { id: 'descobertas-recentes', nome: 'Descobertas Recentes', questoes: 30 }
+                    ],
+                    'Raciocínio Lógico': [
+                        { id: 'logica-proposicional', nome: 'Lógica Proposicional', questoes: 32 },
+                        { id: 'logica-argumentacao', nome: 'Lógica de Argumentação', questoes: 28 },
+                        { id: 'sequencias-padroes', nome: 'Sequências e Padrões', questoes: 30 },
+                        { id: 'problemas-aritmeticos', nome: 'Problemas Aritméticos', questoes: 35 },
+                        { id: 'raciocinio-quantitativo', nome: 'Raciocínio Quantitativo', questoes: 30 },
+                        { id: 'analise-combinatoria', nome: 'Análise Combinatória Básica', questoes: 25 },
+                        { id: 'probabilidade', nome: 'Probabilidade', questoes: 22 },
+                        { id: 'verdades-mentiras', nome: 'Verdades e Mentiras', questoes: 28 },
+                        { id: 'diagramas-logicos', nome: 'Diagramas Lógicos', questoes: 30 }
+                    ]
+                }
+            }
+        };
+
+        let allQuestions = [];
+        let filteredQuestions = [];
+        let currentArea = null;
+        let currentMateria = null;
+        let editingQuestion = null;
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAreasSidebar();
+            loadQuestions();
+        });
+
+        // Carregar sidebar de áreas
+        function loadAreasSidebar() {
+            const areaList = document.getElementById('areaList');
+            let html = '';
+
+            // Item "Todas"
+            html += `
+                <li class="area-item active" onclick="selectArea(null)">
+                    <span>📋 Todas as Questões</span>
+                    <span class="area-badge" id="badge-all">0</span>
+                </li>
+            `;
+
+            for (const [key, data] of Object.entries(ESTRUTURA)) {
+                html += `
+                    <li class="area-item" onclick="selectArea('${key}')">
+                        <span>${data.nome}</span>
+                        <span class="area-badge" id="badge-${key}">0</span>
+                    </li>
+                    <div class="materia-tree" id="materias-${key}" style="display: none;">
+                `;
+
+                for (const [materiaKey, materias] of Object.entries(data.materias)) {
+                    materias.forEach(materia => {
+                        const materiaId = materiaKey.toLowerCase().replace(/\s+/g, '-') + '-' + materia.id;
+                        html += `
+                            <div class="materia-item" onclick="selectMateria('${key}', '${materiaKey}', '${materia.id}', event)">
+                                ${materia.nome} <span id="count-${materiaId}"></span>
+                            </div>
+                        `;
+                    });
+                }
+
+                html += `</div>`;
+            }
+
+            areaList.innerHTML = html;
+        }
+
+        // Selecionar área
+        function selectArea(area) {
+            currentArea = area;
+            currentMateria = null;
+
+            // Atualizar UI
+            document.querySelectorAll('.area-item').forEach(el => el.classList.remove('active'));
+            event.target.closest('.area-item').classList.add('active');
+
+            // Esconder todas as matérias
+            document.querySelectorAll('.materia-tree').forEach(el => el.style.display = 'none');
+
+            // Mostrar matérias da área selecionada
+            if (area) {
+                document.getElementById(`materias-${area}`).style.display = 'block';
+                document.getElementById('contentTitle').textContent = ESTRUTURA[area].nome;
+            } else {
+                document.getElementById('contentTitle').textContent = 'Todas as Questões';
+            }
+
+            filterQuestions();
+        }
+
+        // Selecionar matéria
+        function selectMateria(area, materiaKey, materiaId, event) {
+            event.stopPropagation();
+            currentArea = area;
+            currentMateria = materiaKey + '-' + materiaId;
+
+            document.querySelectorAll('.materia-item').forEach(el => el.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.getElementById('contentTitle').textContent = ESTRUTURA[area].materias[materiaKey].find(materia => materia.id === materiaId).nome;
+            filterQuestions();
+        }
+
+        // Atualizar lista de matérias no modal
+        function updateMateriasList() {
+            const area = document.getElementById('inputArea').value;
+            const materiaSelect = document.getElementById('inputMateria');
+
+            if (!area) {
+                materiaSelect.innerHTML = '<option value="">Selecione uma área primeiro</option>';
+                return;
+            }
+
+            let html = '<option value="">Selecione...</option>';
+            for (const [materiaKey, materias] of Object.entries(ESTRUTURA[area].materias)) {
+                materias.forEach(materia => {
+                    html += `<option value="${materiaKey}-${materia.id}">${materia.nome}</option>`;
+                });
+            }
+
+            materiaSelect.innerHTML = html;
+        }
+
+        // Carregar questões (DEMO)
+        function loadQuestions() {
+            // Modo DEMO: Gerar questões fictícias
+            allQuestions = generateDemoQuestions();
+            filterQuestions();
+            updateCounters();
+        }
+
+        // Filtrar questões
+        function filterQuestions() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const banca = document.getElementById('filterBanca').value;
+            const ano = document.getElementById('filterAno').value;
+
+            filteredQuestions = allQuestions.filter(q => {
+                const matchArea = !currentArea || q.area === currentArea;
+                const matchMateria = !currentMateria || q.materia === currentMateria;
+                const matchSearch = !search || q.enunciado.toLowerCase().includes(search) || q.id.toLowerCase().includes(search);
+                const matchBanca = !banca || q.banca === banca;
+                const matchAno = !ano || q.ano == ano;
+
+                return matchArea && matchMateria && matchSearch && matchBanca && matchAno;
+            });
+
+            renderQuestions();
+        }
+
+        // Renderizar questões
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            document.getElementById('statTotal').textContent = filteredQuestions.length;
+
+            if (filteredQuestions.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <div class="empty-state-text">Nenhuma questão encontrada</div>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '<div class="questions-grid">';
+
+            filteredQuestions.forEach(q => {
+                html += `
+                    <div class="question-card">
+                        <div class="question-header">
+                            <div class="question-id">${q.id}</div>
+                            <div class="question-tags">
+                                <span class="tag tag-area">${ESTRUTURA[q.area].nome}</span>
+                                ${q.banca ? `<span class="tag tag-banca">${q.banca}</span>` : ''}
+                                ${q.ano ? `<span class="tag tag-ano">${q.ano}</span>` : ''}
+                            </div>
+                        </div>
+
+                        <div class="question-text">${q.enunciado}</div>
+
+                        <div class="alternatives">
+                            ${Object.keys(q.alternativas).map(key => `
+                                <div class="alternative ${q.gabarito === key ? 'correct' : ''}">
+                                    <span class="alternative-label">${key}</span>
+                                    ${q.alternativas[key]}
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="explanation">
+                            <div class="explanation-title">💡 Explicação:</div>
+                            <div class="explanation-text">${q.explicacao}</div>
+                        </div>
+
+                        <div class="question-actions">
+                            <button class="btn btn-primary btn-sm" onclick='editQuestion(${JSON.stringify(q).replace(/'/g, "&apos;")})'>
+                                ✏️ Editar
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteQuestion('${q.id}')">
+                                🗑️ Deletar
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // Atualizar contadores
+        function updateCounters() {
+            const counts = { all: allQuestions.length };
+
+            Object.keys(ESTRUTURA).forEach(area => {
+                counts[area] = allQuestions.filter(q => q.area === area).length;
+            });
+
+            document.getElementById('badge-all').textContent = counts.all;
+            Object.keys(ESTRUTURA).forEach(area => {
+                document.getElementById(`badge-${area}`).textContent = counts[area];
+            });
+        }
+
+        // Abrir modal adicionar
+        function openAddModal() {
+            editingQuestion = null;
+            document.getElementById('modalTitle').textContent = '➕ Nova Questão';
+            document.getElementById('questionForm').reset();
+            document.getElementById('questionModal').classList.add('show');
+        }
+
+        // Editar questão
+        function editQuestion(question) {
+            editingQuestion = question;
+            document.getElementById('modalTitle').textContent = '✏️ Editar Questão';
+
+            document.getElementById('inputId').value = question.id;
+            document.getElementById('inputArea').value = question.area;
+            updateMateriasList();
+            document.getElementById('inputMateria').value = question.materia;
+            document.getElementById('inputEnunciado').value = question.enunciado;
+            document.getElementById('inputAltA').value = question.alternativas.A;
+            document.getElementById('inputAltB').value = question.alternativas.B;
+            document.getElementById('inputAltC').value = question.alternativas.C;
+            document.getElementById('inputAltD').value = question.alternativas.D;
+            document.getElementById('inputAltE').value = question.alternativas.E;
+            document.querySelector(`input[name="gabarito"][value="${question.gabarito}"]`).checked = true;
+            document.getElementById('inputExplicacao').value = question.explicacao;
+            document.getElementById('inputBanca').value = question.banca || '';
+            document.getElementById('inputAno').value = question.ano || '';
+            document.getElementById('inputCargo').value = question.cargo || '';
+
+            document.getElementById('questionModal').classList.add('show');
+        }
+
+        // Fechar modal
+        function closeModal() {
+            document.getElementById('questionModal').classList.remove('show');
+        }
+
+        // Salvar questão
+        document.getElementById('questionForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const gabarito = document.querySelector('input[name="gabarito"]:checked');
+            if (!gabarito) {
+                alert('Selecione a alternativa correta!');
+                return;
+            }
+
+            const question = {
+                id: document.getElementById('inputId').value,
+                area: document.getElementById('inputArea').value,
+                materia: document.getElementById('inputMateria').value,
+                enunciado: document.getElementById('inputEnunciado').value,
+                alternativas: {
+                    A: document.getElementById('inputAltA').value,
+                    B: document.getElementById('inputAltB').value,
+                    C: document.getElementById('inputAltC').value,
+                    D: document.getElementById('inputAltD').value,
+                    E: document.getElementById('inputAltE').value
+                },
+                gabarito: gabarito.value,
+                explicacao: document.getElementById('inputExplicacao').value,
+                banca: document.getElementById('inputBanca').value,
+                ano: parseInt(document.getElementById('inputAno').value) || null,
+                cargo: document.getElementById('inputCargo').value
+            };
+
+            // Em produção, chamar API
+            console.log('Salvando questão:', question);
+
+            if (editingQuestion) {
+                // Atualizar existente
+                const index = allQuestions.findIndex(q => q.id === editingQuestion.id);
+                if (index !== -1) {
+                    allQuestions[index] = question;
+                }
+                alert('✅ Questão atualizada com sucesso!');
+            } else {
+                // Adicionar nova
+                allQuestions.push(question);
+                alert('✅ Questão adicionada com sucesso!');
+            }
+
+            closeModal();
+            filterQuestions();
+            updateCounters();
+        });
+
+        // Deletar questão
+        function deleteQuestion(id) {
+            if (!confirm('Tem certeza que deseja deletar esta questão?')) {
+                return;
+            }
+
+            allQuestions = allQuestions.filter(q => q.id !== id);
+            alert('✅ Questão deletada!');
+            filterQuestions();
+            updateCounters();
+        }
+
+        // Gerar questões demo
+        function generateDemoQuestions() {
+            const questions = [];
+            const bancas = ['CESPE', 'FCC', 'FGV', 'VUNESP'];
+            const anos = [2021, 2022, 2023, 2024];
+
+            let id = 1;
+            for (const [area, data] of Object.entries(ESTRUTURA)) {
+                for (const [materiaKey, materias] of Object.entries(data.materias)) {
+                    materias.forEach(materia => {
+                        for (let i = 0; i < materia.questoes; i++) {
+                            questions.push({
+                                id: `${area}-${id++}`,
+                                area: area,
+                                materia: materiaKey + '-' + materia.id,
+                                enunciado: `Questão demo sobre ${materia.nome} - Enunciado exemplo ${i + 1}`,
+                                alternativas: {
+                                    A: 'Alternativa A - Exemplo de resposta',
+                                    B: 'Alternativa B - Exemplo de resposta correta',
+                                    C: 'Alternativa C - Exemplo de resposta',
+                                    D: 'Alternativa D - Exemplo de resposta',
+                                    E: 'Alternativa E - Exemplo de resposta'
+                                },
+                                gabarito: 'B',
+                                explicacao: `Esta é a explicação detalhada da questão sobre ${materia.nome}. Em modo DEMO.`,
+                                banca: bancas[Math.floor(Math.random() * bancas.length)],
+                                ano: anos[Math.floor(Math.random() * anos.length)],
+                                cargo: 'Cargo Demo'
+                            });
+                        }
+                    });
+                }
+            }
+
+            return questions;
+        }
+    </script>
+</body>
 </html>
