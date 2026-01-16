@@ -744,8 +744,12 @@
                     // Se falhar, tentar método alternativo usando eval (mais permissivo)
                     console.warn('JSON.parse falhou, tentando método alternativo...');
                     
+                    // Remove aspas escapadas problemáticas (\" dentro de strings)
+                    // Substitui \" por ' para evitar quebra de sintaxe
+                    let cleanedCode = exportMatch[1].replace(/\\"/g, "'");
+                    
                     // Criar função que retorna o objeto
-                    const funcao = new Function('return ' + exportMatch[1]);
+                    const funcao = new Function('return ' + cleanedCode);
                     questoesPorTema = funcao();
                 }
                 
