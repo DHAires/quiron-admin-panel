@@ -1,34 +1,4 @@
-# ✅ BACKEND PRONTO - ROTAS DE IMPORTAÇÃO
-
-## 🚀 **BACKEND ATUALIZADO COM SUCESSO!**
-
-O arquivo `/supabase/functions/server/react_questions_routes.tsx` foi atualizado com uma **nova rota de importação**!
-
----
-
-## 📋 **ROTAS DISPONÍVEIS**
-
-### **1️⃣ IMPORTAR DE ARQUIVO** ⭐ **NOVA!**
-```
-POST /make-server-50734795/react-questions/import-from-file
-```
-
-**Headers:**
-```json
-{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer {publicAnonKey}",
-  "X-Admin-Code": "QUIRON_DEV_2024"
-}
-```
-
-**Body:**
-```json
-{
-  "fileName": "questions-constitucional.ts",
-  "area": "juridica",
-  "materia": "Direito Constitucional",
-  "tema": "direitos-garantias",
+<img width="1128" height="554" alt="image" src="https://github.com/user-attachments/assets/8df998fc-0cbb-4735-acda-2b9579cc4bd0" />
   "questions": [
     {
       "id": "const-dg-01",
